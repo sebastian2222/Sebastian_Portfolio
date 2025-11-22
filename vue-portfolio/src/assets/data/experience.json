@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "role": "Software Engineer",
+    "company": "NCR Voyix / Global Payments",
+    "period": "2022 – 2024",
+    "description": "Developed high-performance C++ payment features, automation scripts, and handled production issues across Mastercard and AMEX transaction flows.",
+    "image": "/images/experience1.jpg"
+  },
+  {
+    "id": 2,
+    "role": "Teaching Associate",
+    "company": "Monash University",
+    "period": "2024 – Present",
+    "description": "Lead and mentor first-year Software Engineering classes (FIT1056), conducted labs, assessments, and provided guidance to new developers.",
+    "image": "/images/experience1.jpg"
+  },
+  {
+    "id": 3,
+    "role": "Project Officer",
+    "company": "Project Switch",
+    "period": "2024 – Present",
+    "description": "Research and develop assistive gaming technologies for people with disabilities, including wireless controller prototypes.",
+    "image": "/images/experience1.jpg"
+  }
+]

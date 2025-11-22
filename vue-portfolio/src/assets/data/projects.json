@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "PantryPals – Smart Kitchen App",
+    "description": "A context-aware Android app using ML Kit, Firebase, and Jetpack Compose to track food expiry and power-outage events using UK-DALE dataset.",
+    "image": "/images/project1.jpg",
+    "technologies": ["Kotlin", "Jetpack Compose", "Firebase", "ML Kit"],
+    "link": "https://example.com/project1"
+  },
+  {
+    "id": 2,
+    "title": "GetFit Victoria – Sports Activity Finder",
+    "description": "A Vue3 + Firestore web app to help people find sports venues, rate facilities, and register for community events.",
+    "image": "/images/project2.jpg",
+    "technologies": ["Vue 3", "Firebase", "Cloud Functions", "SendGrid"],
+    "link": "https://example.com/project2"
+  },
+  {
+    "id": 3,
+    "title": "SwapUP – Toy & Game Swapping Platform",
+    "description": "A mobile-first platform for parents and hobbyists to safely swap toys and collectibles with review-driven flows.",
+    "image": "/images/project3.jpg",
+    "technologies": ["Vue 3", "Node.js", "Firebase", "PrimeVue"],
+    "link": "https://example.com/project3"
+  }
+]

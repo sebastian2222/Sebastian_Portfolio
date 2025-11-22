@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "school": "Monash University",
+    "degree": "Master of Information Technology",
+    "period": "2024 – 2026",
+    "details": "WAM 86+, High Distinctions in Java, Python, Databases, Networks. Teaching Associate for FIT1056."
+  },
+  {
+    "id": 2,
+    "school": "National Institute Of Technology, Calivcut",
+    "degree": "Bachelor of Technology in Computer Science",
+    "period": "2018 – 2022",
+    "details": "High Distinction in Data Structures, Algorithms, Advanced Networks, and Python."
+  }
+]

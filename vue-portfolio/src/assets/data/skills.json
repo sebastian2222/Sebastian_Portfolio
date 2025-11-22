@@ -1,0 +1,6 @@
+{
+  "languages": ["Java", "Python", "Kotlin", "C++", "JavaScript", "SQL"],
+  "frameworks": ["Vue 3", "Node.js", "Firebase", "Jetpack Compose", "TailwindCSS"],
+  "tools": ["Git", "Docker", "Postman", "Linux", "Firebase Console", "Cloudflare"],
+  "softSkills": ["Teamwork", "Communication", "Leadership", "Problem-Solving"]
+}
