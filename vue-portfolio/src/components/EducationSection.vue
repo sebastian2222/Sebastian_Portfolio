@@ -1,10 +1,8 @@
 <template>
-  <section id="education" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Education & Awards</h2>
-      <div class="timeline">
-        <TimelineItem v-for="(item, index) in education" :key="index" :item="item" />
-      </div>
+  <section id="education" class="container py-5 min-vh-100">
+    <h2 class="text-center mb-5">Education & Awards</h2>
+    <div class="timeline">
+      <TimelineItem v-for="(item, index) in education" :key="index" :item="item" />
     </div>
   </section>
 </template>

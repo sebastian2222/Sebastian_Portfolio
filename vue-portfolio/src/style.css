@@ -77,3 +77,77 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;
+  position: relative;
+}
+
+.timeline__event {
+  display: flex;
+  position: relative;
+  margin-bottom: 40px;
+  align-self: center;
+  width: 90%;
+  max-width: 800px;
+}
+
+.timeline__event:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline__event__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: #6c63ff;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  z-index: 1;
+  margin: 0 20px;
+}
+
+.timeline__event__content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+}
+
+.timeline__event__title {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.timeline__event__date {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.timeline__event__description {
+  color: #444;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 768px) {
+  .timeline__event {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .timeline__event__icon {
+    margin: 0 0 10px 0;
+  }
+
+  .timeline__event__content {
+    width: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNavbar">
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">My Portfolio</a>
+      <a class="navbar-brand fw-bold fs-4" href="#">My Portfolio</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -10,15 +10,16 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item" v-for="link in navLinks" :key="link.href">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" v-for="link in links" :key="link.id">
             <a
               class="nav-link"
-              :href="link.href"
-              :class="{ active: activeSection === link.href }"
-              >{{ link.label }}</a
+              :href="`#${link.id}`"
+              :class="{ active: currentSection === link.id }"
             >
+              {{ link.name }}
+            </a>
           </li>
         </ul>
       </div>
@@ -27,29 +28,33 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Projects & Skills', href: '#projects' },
-  { label: 'Work Experience', href: '#experience' },
-  { label: 'Education & Awards', href: '#education' },
-  { label: 'Contact Me', href: '#contact' }
+const links = [
+  { name: 'Home', id: 'home' },
+  { name: 'Projects & Skills', id: 'projects' },
+  { name: 'Work Experience', id: 'experience' },
+  { name: 'Education & Awards', id: 'education' },
+  { name: 'Contact Me', id: 'contact' }
 ]
 
-const activeSection = ref('#home')
+const currentSection = ref('home')
 
 onMounted(() => {
-  const sections = document.querySelectorAll('section')
-  window.addEventListener('scroll', () => {
-    let current = '#home'
-    sections.forEach((sec) => {
-      const top = window.scrollY
-      if (top >= sec.offsetTop - 100) {
-        current = `#${sec.id}`
-      }
-    })
-    activeSection.value = current
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          currentSection.value = entry.target.id
+        }
+      })
+    },
+    { threshold: 0.6 }
+  )
+
+  links.forEach(link => {
+    const section = document.getElementById(link.id)
+    if (section) observer.observe(section)
   })
 })
 </script>

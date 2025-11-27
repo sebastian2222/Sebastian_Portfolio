@@ -15,12 +15,10 @@
         </div>
       </div>
       <div class="card-footer">
-        <a
-          v-if="project.link"
-          :href="project.link"
-          target="_blank"
+        <router-link
+          :to="`/projects/${project.slug}`"
           class="btn btn-outline-primary w-100"
-          >View Project</a
+          >View Project</router-link
         >
       </div>
     </div>

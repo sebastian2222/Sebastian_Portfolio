@@ -1,5 +1,5 @@
 <template>
-  <section id="home" class="py-5 mt-5">
+  <section id="home" class="container d-flex align-items-center justify-content-between min-vh-100 py-5">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-6 text-center text-md-start">
