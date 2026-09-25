@@ -53,7 +53,6 @@ const headerLinks = computed(() =>
 
         <ul class="hero__stickers">
           <li class="sticker tone-yellow">{{ project.year }}</li>
-          <li class="sticker tone-mint">{{ project.team }}</li>
           <li class="sticker tone-pink">{{ project.role }}</li>
         </ul>
 
@@ -100,7 +99,8 @@ const headerLinks = computed(() =>
 
         <section class="block">
           <h2 class="block__title">
-            <span class="block__num mono">{{ num('built') }}</span> What I built
+            <span class="block__num mono">{{ num('built') }}</span>
+            {{ project.builtHeading ?? 'What I built' }}
           </h2>
           <ul class="list">
             <li v-for="(item, i) in project.built" :key="i">{{ item }}</li>

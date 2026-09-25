@@ -24,7 +24,7 @@ describe('ProjectCard', () => {
     })
     expect(wrapper.find('a').attributes('href')).toBe('/projects/cloudpose')
     expect(wrapper.text()).toContain('Demo video')
-    expect(wrapper.text()).toContain('Solo')
+    expect(wrapper.text()).not.toMatch(/\bSolo\b|\bTeam\b/)
   })
 
   it('caps the stack chips and shows the overflow count', async () => {

@@ -44,8 +44,7 @@ const badges = computed(() => {
       </ul>
 
       <div class="pcard__footer">
-        <ul class="pcard__badges">
-          <li class="badge badge--team mono">{{ project.team }}</li>
+        <ul v-if="badges.length" class="pcard__badges">
           <li v-for="b in badges" :key="b.text" class="badge mono">
             <AppIcon :name="b.icon" :size="12" /> {{ b.text }}
           </li>
@@ -172,11 +171,8 @@ const badges = computed(() => {
   text-transform: uppercase;
 }
 
-.badge--team {
-  background: var(--paper-2);
-}
-
 .pcard__cta {
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;

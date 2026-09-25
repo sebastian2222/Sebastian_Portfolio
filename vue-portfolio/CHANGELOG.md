@@ -11,6 +11,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Replace the self-hosted CloudPose demo with a YouTube/Vimeo embed if bandwidth becomes a concern.
 - Add screenshots for the Hush and PantryPals case studies.
 
+## [1.4.1] - 2026-09-25
+
+### Changed
+
+- Removed the Solo/Team tags from project cards and case-study headers, along with the `team` data field.
+- PantryPals is now credited as sole software engineer, with a "My part" note covering the full build.
+- BirdTag: the figure caption no longer mentions the team report, and the build section is titled "How it works" (via a new optional `builtHeading` field).
+
 ## [1.4.0] - 2026-09-25
 
 ### Added

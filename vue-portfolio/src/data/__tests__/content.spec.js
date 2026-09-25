@@ -23,7 +23,6 @@ describe('projects', () => {
       'year',
       'context',
       'course',
-      'team',
       'role',
       'summary',
       'problem',
