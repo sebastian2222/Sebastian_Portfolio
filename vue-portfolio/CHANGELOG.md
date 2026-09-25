@@ -11,6 +11,26 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Replace the self-hosted CloudPose demo with a YouTube/Vimeo embed if bandwidth becomes a concern.
 - Add screenshots for the Hush and PantryPals case studies.
 
+## [1.4.0] - 2026-09-25
+
+### Added
+
+- **"From the report" figures** on case studies, taken from the original submissions:
+  - MATE AWS architecture diagram
+  - BirdTag architecture (Fig 1 of the team report)
+  - Monash Equipment Center star schema
+  - PTV bus-access heatmap
+
+  Each figure is lazy-loaded with alt text, intrinsic dimensions and an "Open full size" link.
+- Test ensuring every figure has alt text, a caption and dimensions.
+
+### Changed
+
+- The hero stat reads "2+ years of production impact" instead of "2 yrs C++" (also updated in the intro, the journey and the experience heading).
+- MOSAIC: added the Notion-based incident triage for the production sites.
+- NCR: added the C# .NET automation suite work alongside the C++ processor services. C# and .NET added to the toolbox.
+- Case-study section numbers are now computed from the sections a project actually has, so there are no gaps.
+
 ## [1.3.0] - 2026-09-25
 
 ### Changed

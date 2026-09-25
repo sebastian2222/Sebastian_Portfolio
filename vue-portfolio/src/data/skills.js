@@ -1,11 +1,11 @@
 export const skills = [
   {
     group: 'Languages',
-    items: ['Python', 'Java', 'Kotlin', 'C++', 'SQL', 'JavaScript', 'TypeScript', 'R'],
+    items: ['Python', 'Java', 'Kotlin', 'C++', 'C#', 'SQL', 'JavaScript', 'TypeScript', 'R'],
   },
   {
     group: 'Backend',
-    items: ['FastAPI', 'Flask', 'Node.js', 'REST APIs', 'Apache Kafka', 'ISO 8583'],
+    items: ['FastAPI', 'Flask', 'Node.js', '.NET', 'REST APIs', 'Apache Kafka', 'ISO 8583'],
   },
   {
     group: 'Cloud & infrastructure',

@@ -16,7 +16,7 @@ const CHIP_TONES = ['mint', 'yellow', 'cobalt', 'lilac', 'pink', 'tomato']
       <SectionHeading
         id="experience-title"
         label="Field experience"
-        note="4+ years of production impact"
+        note="2+ years of production impact"
         title="Work experience"
         tag="LOGBOOK"
         tone="cobalt"

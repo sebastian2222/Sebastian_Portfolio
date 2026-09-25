@@ -16,6 +16,21 @@ const next = computed(() => projects[(index.value + 1) % projects.length])
 const LINK_ICONS = { live: 'arrow-up-right', repo: 'github', demo: 'play', docs: 'doc' }
 const DECISION_TONES = ['yellow', 'mint', 'pink', 'lilac', 'cobalt', 'tomato']
 
+// Number only the sections this project actually has, so there are no gaps.
+const SECTION_ORDER = [
+  ['problem', (p) => p.problem],
+  ['built', (p) => p.built?.length],
+  ['contribution', (p) => p.contribution],
+  ['architecture', (p) => p.architecture],
+  ['figures', (p) => p.figures?.length],
+  ['decisions', (p) => p.decisions?.length],
+  ['results', (p) => p.results],
+]
+const sections = computed(() =>
+  SECTION_ORDER.filter(([, has]) => has(project.value)).map(([key]) => key),
+)
+const num = (key) => String(sections.value.indexOf(key) + 1).padStart(2, '0')
+
 // The video is embedded below, so skip the demo link in the header.
 const headerLinks = computed(() =>
   project.value.links.filter((l) => !(l.kind === 'demo' && project.value.media?.video)),
@@ -77,29 +92,62 @@ const headerLinks = computed(() =>
         </figure>
 
         <section class="block">
-          <h2 class="block__title"><span class="block__num mono">01</span> The problem</h2>
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('problem') }}</span> The problem
+          </h2>
           <p class="prose">{{ project.problem }}</p>
         </section>
 
         <section class="block">
-          <h2 class="block__title"><span class="block__num mono">02</span> What I built</h2>
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('built') }}</span> What I built
+          </h2>
           <ul class="list">
             <li v-for="(item, i) in project.built" :key="i">{{ item }}</li>
           </ul>
         </section>
 
         <section v-if="project.contribution" class="block">
-          <h2 class="block__title"><span class="block__num mono">03</span> My part</h2>
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('contribution') }}</span> My part
+          </h2>
           <p class="sticky-note">{{ project.contribution }}</p>
         </section>
 
         <section v-if="project.architecture" class="block">
-          <h2 class="block__title"><span class="block__num mono">04</span> How it fits together</h2>
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('architecture') }}</span> How it fits together
+          </h2>
           <ArchitectureFlow v-bind="project.architecture" />
         </section>
 
+        <section v-if="project.figures?.length" class="block">
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('figures') }}</span> From the report
+          </h2>
+          <figure v-for="fig in project.figures" :key="fig.src" class="report-fig card">
+            <span class="tape" style="top: -12px; left: 50%; translate: -50% 0; rotate: -2deg" />
+            <a :href="fig.src" target="_blank" rel="noopener" class="report-fig__link">
+              <img
+                :src="fig.src"
+                :alt="fig.alt"
+                :width="fig.width"
+                :height="fig.height"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="report-fig__zoom mono">Open full size ↗</span>
+            </a>
+            <figcaption class="report-fig__caption">
+              <span class="hand">from my report →</span> {{ fig.caption }}
+            </figcaption>
+          </figure>
+        </section>
+
         <section v-if="project.decisions?.length" class="block">
-          <h2 class="block__title"><span class="block__num mono">05</span> Key decisions</h2>
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('decisions') }}</span> Key decisions
+          </h2>
           <div class="decisions">
             <article
               v-for="(d, i) in project.decisions"
@@ -114,7 +162,9 @@ const headerLinks = computed(() =>
         </section>
 
         <section v-if="project.results" class="block">
-          <h2 class="block__title"><span class="block__num mono">06</span> Results</h2>
+          <h2 class="block__title">
+            <span class="block__num mono">{{ num('results') }}</span> Results
+          </h2>
 
           <dl v-if="project.results.metrics" class="metrics">
             <div
@@ -364,6 +414,56 @@ const headerLinks = computed(() =>
   box-shadow: 5px 5px 0 var(--ink);
   font-weight: 500;
   rotate: -0.6deg;
+}
+
+.report-fig {
+  position: relative;
+  margin: 0;
+  padding: 0.85rem;
+}
+
+.report-fig + .report-fig {
+  margin-top: 1.5rem;
+}
+
+.report-fig__link {
+  position: relative;
+  display: block;
+  border: var(--line-thin);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #fff;
+}
+
+.report-fig__link img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.report-fig__zoom {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  padding: 0.25rem 0.6rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--yellow);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font-size: 0.7rem;
+}
+
+.report-fig__caption {
+  padding-top: 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.report-fig__caption .hand {
+  font-size: 1.25rem;
+  color: var(--tomato-text);
 }
 
 .decisions {

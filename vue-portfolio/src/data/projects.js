@@ -10,10 +10,16 @@
  *   role, categories[], featured, stack[], links[{ label, href, kind }],
  *   media?: { video, poster }, summary, problem, built[], architecture?:
  *   { lanes: [{ name, steps[] }], caption }, decisions[{ title, detail }],
- *   results?: { metrics?[{ value, label }], table?, notes?[] }, contribution?
+ *   results?: { metrics?[{ value, label }], table?, notes?[] }, contribution?,
+ *   figures?: [{ src, width, height, alt, caption }] (diagrams from reports)
  *
  * `kind` is one of: live | repo | demo | docs.
  */
+
+import mateArchitecture from '@/assets/images/figures/mate-architecture.webp'
+import birdtagArchitecture from '@/assets/images/figures/birdtag-architecture.webp'
+import warehouseStarSchema from '@/assets/images/figures/warehouse-star-schema.webp'
+import ptvHeatmap from '@/assets/images/figures/ptv-heatmap.webp'
 
 export const categories = [
   { id: 'all', label: 'All' },
@@ -535,6 +541,16 @@ export const projects = [
     year: '2025',
     context: 'Serverless AI media platform',
     course: 'Monash University · FIT5225 Cloud Computing & Security',
+    figures: [
+      {
+        src: birdtagArchitecture,
+        width: 1862,
+        height: 1120,
+        alt: 'BirdTag AWS architecture: a Next.js UI behind API Gateway and Cognito; uploads to S3 trigger tagging and thumbnail Lambdas that write to DynamoDB; six query Lambdas and an SNS subscription Lambda serve the users; CloudWatch monitors Lambda and API errors.',
+        caption:
+          'Fig 1 from our team report: S3-triggered tagging and thumbnail Lambdas, DynamoDB metadata, and one Lambda per query.',
+      },
+    ],
     team: 'Team of 4',
     role: 'Backend engineer',
     categories: ['cloud', 'backend', 'ai'],
@@ -734,6 +750,16 @@ export const projects = [
     year: '2025',
     context: 'Cloud solution architecture',
     course: 'Monash University · FIT5225 Cloud Computing & Security',
+    figures: [
+      {
+        src: mateArchitecture,
+        width: 1635,
+        height: 2048,
+        alt: 'AWS architecture diagram for the MATE fitness platform: camera feeds into Kinesis Video Streams and SageMaker, competition, payment, user-management, wearables and social modules in private subnets, and a retraining pipeline with Glue, EventBridge and CodePipeline, fronted by Route 53, WAF, CloudFront and API Gateway.',
+        caption:
+          'The architecture diagram from my design report: every module sits in private subnets behind one API Gateway.',
+      },
+    ],
     team: 'Solo',
     role: 'Solutions architect',
     categories: ['cloud'],
@@ -786,6 +812,16 @@ export const projects = [
     year: '2025',
     context: 'Data warehousing & BI',
     course: 'Monash University · FIT5137 Advanced Database Technology',
+    figures: [
+      {
+        src: warehouseStarSchema,
+        width: 1381,
+        height: 1080,
+        alt: 'Star schema with FACT_SALES and FACT_HIRE fact tables linked to BRANCH_DIM, CUSTOMER_TYPE_DIM, EQUIPMENT_DIM, CATEGORY_DIM, TIME_DIM and PRICE_SCALE_DM dimensions.',
+        caption:
+          'The star schema from my report: two fact tables sharing branch, customer-type, equipment and time dimensions.',
+      },
+    ],
     team: 'Solo',
     role: 'Data engineer / analyst',
     categories: ['data'],
@@ -817,6 +853,16 @@ export const projects = [
     year: '2025',
     context: 'Geospatial transport analysis',
     course: 'Monash University · FIT5137 Advanced Database Technology',
+    figures: [
+      {
+        src: ptvHeatmap,
+        width: 1600,
+        height: 1132,
+        alt: 'Choropleth map of Greater Melbourne suburbs shaded by the number of unique bus routes serving parkland and water mesh blocks, from 0–1 (white) to 20–29 (dark green).',
+        caption:
+          'The QGIS heatmap from my report: unique bus routes serving parks and waterways in each suburb.',
+      },
+    ],
     team: 'Solo',
     role: 'Spatial data analyst',
     categories: ['data'],

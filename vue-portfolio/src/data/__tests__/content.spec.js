@@ -51,6 +51,17 @@ describe('projects', () => {
     }
   })
 
+  it('gives every report figure alt text, a caption and intrinsic dimensions', () => {
+    for (const p of projects) {
+      for (const fig of p.figures ?? []) {
+        expect(fig.src, p.slug).toBeTruthy()
+        expect(fig.alt.length, p.slug).toBeGreaterThan(20)
+        expect(fig.caption, p.slug).toBeTruthy()
+        expect(fig.width * fig.height, p.slug).toBeGreaterThan(0)
+      }
+    }
+  })
+
   it('has an even number of featured projects so the 2-column grid stays balanced', () => {
     expect(projects.filter((p) => p.featured).length % 2).toBe(0)
   })
