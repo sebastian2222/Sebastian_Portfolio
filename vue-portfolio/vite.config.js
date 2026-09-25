@@ -16,7 +16,7 @@ function spaFallback() {
     configResolved(config) {
       outDir = resolve(config.root, config.build.outDir)
     },
-    async closeBundle() {
+    async writeBundle() {
       await copyFile(resolve(outDir, 'index.html'), resolve(outDir, '404.html'))
     },
   }
