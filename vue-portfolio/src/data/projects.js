@@ -878,3 +878,7 @@ export const projects = [
 ]
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug)
+
+// Sticker colour per project, cycled by position so neighbours never match.
+const TONES = ['yellow', 'mint', 'lilac', 'cobalt', 'pink', 'tomato']
+export const toneOf = (project) => TONES[Math.max(0, projects.indexOf(project)) % TONES.length]

@@ -4,38 +4,41 @@ import AppIcon from '@/components/AppIcon.vue'
 
 <template>
   <section class="section">
-    <div class="container notfound">
-      <p class="mono notfound__code">HTTP 404</p>
-      <h1>This route isn't in the routing table.</h1>
-      <p class="notfound__lead">
-        The page may have moved. Everything is reachable from the home page.
-      </p>
-      <RouterLink to="/" class="btn btn--primary">
-        <AppIcon name="arrow-left" /> Back home
-      </RouterLink>
+    <div class="container">
+      <div class="notfound card">
+        <span class="tape" style="top: -12px; left: 40px; rotate: -3deg" />
+        <span class="sticker tone-tomato">HTTP 404</span>
+        <h1>This page isn’t in my notebook.</h1>
+        <p class="notfound__lead">It may have moved. Everything is reachable from the home page.</p>
+        <p class="hand notfound__note">(I checked twice.)</p>
+        <RouterLink to="/" class="btn btn--yellow">
+          <AppIcon name="arrow-left" /> Back home
+        </RouterLink>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
 .notfound {
+  position: relative;
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
   justify-items: start;
-  min-height: 50vh;
-  align-content: center;
-}
-
-.notfound__code {
-  color: var(--accent);
+  max-width: 640px;
+  padding: clamp(1.5rem, 5vw, 3rem);
 }
 
 .notfound h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  max-width: 18ch;
+  font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .notfound__lead {
-  color: var(--text-muted);
+  color: var(--ink-soft);
+}
+
+.notfound__note {
+  font-size: 1.4rem;
+  color: var(--tomato-text);
 }
 </style>

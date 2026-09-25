@@ -19,14 +19,16 @@ const more = computed(() => visible.value.filter((p) => !p.featured))
 </script>
 
 <template>
-  <section id="projects" class="section projects" aria-labelledby="projects-title">
+  <section id="projects" class="section" aria-labelledby="projects-title">
     <div class="container">
       <SectionHeading
         id="projects-title"
-        index="02"
-        eyebrow="Projects"
-        title="Selected work"
-        lead="Each case study covers the problem, what I built, how it fits together and the decisions behind it. Live links, source and demos are included where the project allows."
+        label="Shipped work"
+        :note="`${projects.filter((p) => p.featured).length} featured builds`"
+        title="Things I’ve built"
+        tag="PORTFOLIO"
+        tone="tomato"
+        lead="Each one has a full case study: the problem, what I built, how it fits together and the decisions behind it."
       />
 
       <div class="filters" role="group" aria-label="Filter projects by area">
@@ -34,12 +36,13 @@ const more = computed(() => visible.value.filter((p) => !p.featured))
           v-for="f in filters"
           :key="f.id"
           type="button"
-          class="filter"
+          class="filter mono"
           :aria-pressed="active === f.id"
           @click="active = f.id"
         >
           {{ f.label }}
         </button>
+        <span class="hand filters__note" aria-hidden="true">← pick one!</span>
       </div>
       <p class="visually-hidden" aria-live="polite">{{ visible.length }} projects shown</p>
 
@@ -50,7 +53,9 @@ const more = computed(() => visible.value.filter((p) => !p.featured))
       </ul>
 
       <template v-if="more.length">
-        <h3 class="mono more__title">More projects</h3>
+        <h3 class="more__title">
+          <span class="sticker tone-lilac">More builds in the vault</span>
+        </h3>
         <ul class="grid grid--more">
           <li v-for="p in more" :key="p.slug" v-reveal>
             <ProjectCard :project="p" compact />
@@ -62,49 +67,45 @@ const more = computed(() => visible.value.filter((p) => !p.featured))
 </template>
 
 <style scoped>
-.projects {
-  background: linear-gradient(
-    180deg,
-    transparent,
-    var(--bg-raised) 20%,
-    var(--bg-raised) 80%,
-    transparent
-  );
-}
-
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
   margin-bottom: 2rem;
 }
 
 .filter {
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 0.9rem;
+  border: var(--line-thin);
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  font-weight: 500;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.78rem;
   cursor: pointer;
-  transition: all 160ms var(--ease);
+  transition:
+    transform 140ms var(--ease),
+    background 140ms var(--ease);
 }
 
 .filter:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
+  transform: translate(-1px, -2px);
+  background: var(--yellow-tint);
 }
 
 .filter[aria-pressed='true'] {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--bg);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.filters__note {
+  font-size: 1.35rem;
+  color: var(--tomato-text);
 }
 
 .grid {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.75rem;
   list-style: none;
 }
 
@@ -117,12 +118,7 @@ const more = computed(() => visible.value.filter((p) => !p.featured))
 }
 
 .more__title {
-  margin: 3.5rem 0 1.25rem;
-  color: var(--text-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
-  font-weight: 500;
+  margin: 3rem 0 1.25rem;
 }
 
 @media (max-width: 960px) {
@@ -135,6 +131,10 @@ const more = computed(() => visible.value.filter((p) => !p.featured))
   .grid--featured,
   .grid--more {
     grid-template-columns: 1fr;
+  }
+
+  .filters__note {
+    display: none;
   }
 }
 </style>

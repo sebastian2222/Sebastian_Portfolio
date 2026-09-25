@@ -1,21 +1,33 @@
 <script setup>
 import SectionHeading from '@/components/SectionHeading.vue'
 import { gallery } from '@/data/gallery'
+
+const TILTS = ['-2deg', '1.5deg', '-1deg', '2deg']
+const TAPES = ['', 'tape--pink', 'tape--mint', '']
 </script>
 
 <template>
-  <section class="section gallery-section" aria-labelledby="gallery-title">
+  <section id="field-notes" class="section" aria-labelledby="gallery-title">
     <div class="container">
       <SectionHeading
         id="gallery-title"
-        index="04"
-        eyebrow="Off the keyboard"
-        title="Community, demos and good company"
-        lead="Much of my best work has come from building with other people, in hackathon rooms, at expos and at meetups."
+        label="Snapshots"
+        note="life outside the terminal"
+        title="Off the keyboard"
+        tag="FIELD NOTES"
+        tone="pink"
+        lead="Community talks, demo days and meetups around Melbourne."
       />
 
-      <ul class="gallery">
-        <li v-for="photo in gallery" :key="photo.src" v-reveal class="photo">
+      <ul class="wall">
+        <li
+          v-for="(photo, i) in gallery"
+          :key="photo.src"
+          v-reveal
+          class="polaroid"
+          :style="{ '--tilt': TILTS[i % TILTS.length] }"
+        >
+          <span class="tape" :class="TAPES[i % TAPES.length]" />
           <figure>
             <img
               :src="photo.src"
@@ -25,7 +37,7 @@ import { gallery } from '@/data/gallery'
               loading="lazy"
               decoding="async"
             />
-            <figcaption class="mono">{{ photo.caption }}</figcaption>
+            <figcaption class="hand">{{ photo.caption }}</figcaption>
           </figure>
         </li>
       </ul>
@@ -34,38 +46,65 @@ import { gallery } from '@/data/gallery'
 </template>
 
 <style scoped>
-.gallery {
+.wall {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem 1.5rem;
   list-style: none;
-  columns: 3 260px;
-  column-gap: 1rem;
+  padding-top: 0.75rem;
 }
 
-.photo {
-  break-inside: avoid;
-  margin-bottom: 1rem;
+.polaroid {
+  position: relative;
+  rotate: var(--tilt);
+  transition: rotate 200ms var(--ease);
 }
 
-.photo figure {
+.polaroid:hover {
+  rotate: 0deg;
+}
+
+.polaroid .tape {
+  top: -12px;
+  left: 50%;
+  translate: -50% 0;
+  width: 90px;
+}
+
+.polaroid figure {
   margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
+  padding: 0.7rem 0.7rem 0.4rem;
+  background: var(--card);
+  border: var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  box-shadow: 6px 6px 0 var(--ink);
 }
 
-.photo img {
+.polaroid img {
   width: 100%;
   height: auto;
-  transition: transform 500ms var(--ease);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: var(--line-thin);
+  border-radius: 6px;
 }
 
-.photo:hover img {
-  transform: scale(1.03);
+.polaroid figcaption {
+  padding: 0.6rem 0.2rem 0.3rem;
+  font-size: 1.3rem;
+  text-align: center;
 }
 
-.photo figcaption {
-  padding: 0.7rem 0.9rem;
-  color: var(--text-muted);
-  font-size: 0.75rem;
+@media (max-width: 960px) {
+  .wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .wall {
+    grid-template-columns: 1fr;
+    padding-inline: 1rem;
+  }
 }
 </style>

@@ -3,33 +3,40 @@ defineProps({
   lanes: { type: Array, required: true },
   caption: { type: String, default: '' },
 })
+
+const LANE_TONES = ['yellow', 'mint', 'pink', 'lilac']
 </script>
 
 <template>
-  <figure class="flow">
-    <div v-for="lane in lanes" :key="lane.name" class="lane">
+  <figure class="flow card">
+    <div
+      v-for="(lane, i) in lanes"
+      :key="lane.name"
+      class="lane"
+      :class="`tone-${LANE_TONES[i % LANE_TONES.length]}`"
+    >
       <p class="mono lane__name">{{ lane.name }}</p>
       <ol class="lane__steps">
-        <li v-for="(step, i) in lane.steps" :key="i" class="step">
+        <li v-for="(step, j) in lane.steps" :key="j" class="step">
           <span class="step__box">{{ step }}</span>
         </li>
       </ol>
     </div>
-    <figcaption v-if="caption" class="flow__caption">{{ caption }}</figcaption>
+    <figcaption v-if="caption" class="flow__caption">
+      <span class="hand flow__note" aria-hidden="true">how it works →</span> {{ caption }}
+    </figcaption>
   </figure>
 </template>
 
 <style scoped>
 .flow {
+  display: grid;
+  gap: 1.25rem;
   margin: 0;
   padding: clamp(1rem, 3vw, 1.75rem);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
   background:
-    radial-gradient(var(--grid-dot) 1px, transparent 1px) 0 0 / 18px 18px,
-    var(--bg-raised);
-  display: grid;
-  gap: 1.5rem;
+    radial-gradient(rgb(27 31 59 / 0.12) 1.5px, transparent 1.5px) 0 0 / 20px 20px,
+    var(--paper);
 }
 
 .lane {
@@ -40,18 +47,21 @@ defineProps({
 }
 
 .lane__name {
-  padding-top: 0.45rem;
-  color: var(--accent);
+  justify-self: start;
+  margin-top: 0.3rem;
+  padding: 0.15rem 0.5rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  background: var(--tone);
+  font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.7rem;
 }
 
 .lane__steps {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  row-gap: 0.6rem;
+  row-gap: 0.7rem;
   list-style: none;
 }
 
@@ -60,35 +70,42 @@ defineProps({
   align-items: center;
 }
 
-/* Connector arrow between consecutive steps. */
+/* Hand-drawn style connector between steps */
 .step + .step::before {
-  content: '';
-  width: 22px;
-  height: 1px;
-  margin-inline: 4px;
-  background: var(--border-strong);
-  mask: linear-gradient(90deg, #000 70%, transparent);
+  content: '→';
+  margin-inline: 0.4rem;
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--tomato-text);
 }
 
 .step__box {
   display: inline-block;
-  padding: 0.45rem 0.75rem;
-  border: 1px solid var(--border-strong);
+  padding: 0.4rem 0.7rem;
+  border: var(--line-thin);
   border-radius: var(--radius-sm);
-  background: var(--surface);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
   font-size: 0.85rem;
+  font-weight: 600;
   line-height: 1.35;
 }
 
 .step:first-child .step__box {
-  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+  background: var(--tone-tint);
 }
 
 .flow__caption {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  border-top: 1px dashed var(--border);
   padding-top: 1rem;
+  border-top: 2px dashed rgb(27 31 59 / 0.25);
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.flow__note {
+  font-size: 1.25rem;
+  color: var(--tomato-text);
 }
 
 @media (max-width: 640px) {
@@ -109,10 +126,8 @@ defineProps({
   }
 
   .step + .step::before {
-    width: 1px;
-    height: 14px;
-    margin: 2px 0 2px 1.25rem;
-    mask: none;
+    content: '↓';
+    margin: 0.1rem 0 0.1rem 1rem;
   }
 }
 </style>

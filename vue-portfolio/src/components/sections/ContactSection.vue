@@ -20,40 +20,51 @@ async function copyEmail() {
 <template>
   <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="container">
-      <div v-reveal class="contact">
-        <p class="mono contact__eyebrow">05 / Contact</p>
-        <h2 id="contact-title" class="contact__title">Hiring for a software engineer?</h2>
+      <div v-reveal class="contact card">
+        <span class="tape tape--pink" style="top: -12px; left: 12%; rotate: -4deg" />
+        <span class="tape tape--mint" style="top: -12px; right: 12%; rotate: 4deg" />
+        <svg class="plane" viewBox="0 0 64 64" aria-hidden="true">
+          <path
+            d="M4 30 60 6 44 58 32 38Z M32 38 60 6"
+            fill="var(--card)"
+            stroke="var(--ink)"
+            stroke-width="3"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        <span class="sticker tone-mint">
+          <span class="dot dot--pulse" aria-hidden="true" /> Ready for full-time opportunities
+        </span>
+        <h2 id="contact-title" class="contact__title">
+          Hiring? Let’s build something reliable together.
+        </h2>
         <p class="contact__lead">
-          I'm looking for full-time roles in backend, cloud or product engineering. I'm based in
-          Melbourne with unlimited Australian work rights, and I'm happy to talk about what your
-          team is building.
+          Based in Melbourne with full Australian work rights. Open to full-time software, backend
+          and cloud engineering roles.
         </p>
 
-        <div class="contact__actions">
-          <a class="btn btn--primary" :href="`mailto:${profile.email}`">
+        <div class="mailbox">
+          <a class="mailbox__address mono" :href="`mailto:${profile.email}`">
             <AppIcon name="mail" /> {{ profile.email }}
           </a>
-          <button type="button" class="btn" @click="copyEmail">
+          <button type="button" class="btn btn--navy" @click="copyEmail">
             <AppIcon :name="copied ? 'check' : 'copy'" />
-            <span aria-live="polite">{{ copied ? 'Copied' : 'Copy email' }}</span>
+            <span aria-live="polite">{{ copied ? 'Copied!' : 'Copy email' }}</span>
           </button>
         </div>
 
-        <ul class="contact__links">
-          <li>
-            <a :href="profile.links.linkedin" target="_blank" rel="noopener">
-              <AppIcon name="linkedin" /> LinkedIn
-            </a>
-          </li>
-          <li>
-            <a :href="profile.links.github" target="_blank" rel="noopener">
-              <AppIcon name="github" /> GitHub
-            </a>
-          </li>
-          <li>
-            <a :href="asset(profile.resume)" download><AppIcon name="download" /> Résumé (PDF)</a>
-          </li>
-        </ul>
+        <div class="contact__links">
+          <a class="btn" :href="profile.links.linkedin" target="_blank" rel="noopener">
+            <AppIcon name="linkedin" /> LinkedIn
+          </a>
+          <a class="btn" :href="profile.links.github" target="_blank" rel="noopener">
+            <AppIcon name="github" /> GitHub
+          </a>
+          <a class="btn btn--tomato" :href="asset(profile.resume)" download>
+            <AppIcon name="download" /> Download résumé
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -62,63 +73,76 @@ async function copyEmail() {
 <style scoped>
 .contact {
   position: relative;
-  padding: clamp(2rem, 6vw, 4.5rem);
-  border: 1px solid var(--border);
-  border-radius: calc(var(--radius-lg) + 8px);
-  background:
-    radial-gradient(ellipse 60% 80% at 100% 0%, var(--accent-soft), transparent 70%), var(--surface);
-  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  padding: clamp(2rem, 6vw, 4rem) clamp(1.25rem, 4vw, 3rem);
+  background: var(--yellow);
+  text-align: center;
+  box-shadow: 7px 7px 0 var(--ink);
 }
 
-.contact__eyebrow {
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
+.plane {
+  position: absolute;
+  width: 56px;
+  top: 1.5rem;
+  right: 1.75rem;
+  rotate: 12deg;
 }
 
 .contact__title {
-  margin-top: 1rem;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  max-width: 16ch;
+  max-width: 18ch;
+  font-size: clamp(2rem, 5vw, 3.2rem);
 }
 
 .contact__lead {
-  margin-top: 1.1rem;
-  max-width: 56ch;
-  color: var(--text-muted);
-  font-size: 1.075rem;
+  max-width: 52ch;
+  font-size: 1.05rem;
 }
 
-.contact__actions {
+.mailbox {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(100%, 640px);
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border: var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 5px 5px 0 var(--ink);
 }
 
-.contact__actions .btn--primary {
+.mailbox__address {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+  color: var(--ink);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  text-decoration: none;
   overflow-wrap: anywhere;
 }
 
 .contact__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin-top: 2rem;
-  list-style: none;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 
-.contact__links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-muted);
-  font-weight: 550;
-  text-decoration: none;
-}
+@media (max-width: 560px) {
+  .plane {
+    display: none;
+  }
 
-.contact__links a:hover {
-  color: var(--accent);
+  .mailbox .btn {
+    width: 100%;
+  }
 }
 </style>

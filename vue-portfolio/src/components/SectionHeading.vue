@@ -1,57 +1,72 @@
 <script setup>
 defineProps({
-  index: { type: String, default: '' },
-  eyebrow: { type: String, required: true },
-  title: { type: String, required: true },
-  lead: { type: String, default: '' },
   id: { type: String, default: undefined },
+  label: { type: String, required: true },
+  note: { type: String, default: '' },
+  title: { type: String, required: true },
+  tag: { type: String, default: '' },
+  tone: { type: String, default: 'yellow' },
+  lead: { type: String, default: '' },
 })
 </script>
 
 <template>
   <header v-reveal class="heading">
-    <p class="mono heading__eyebrow">
-      <span v-if="index" class="heading__index">{{ index }}</span>
-      {{ eyebrow }}
+    <p class="heading__meta">
+      <span class="sticker" :class="`tone-${tone}`">{{ label }}</span>
+      <span v-if="note" class="mono heading__note">• {{ note }}</span>
     </p>
-    <h2 :id="id" class="heading__title">{{ title }}</h2>
+    <div class="heading__row">
+      <h2 :id="id" class="heading__title">{{ title }}</h2>
+      <span v-if="tag" class="mono heading__tag">{{ tag }}</span>
+    </div>
     <p v-if="lead" class="heading__lead">{{ lead }}</p>
   </header>
 </template>
 
 <style scoped>
 .heading {
-  max-width: 720px;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+  max-width: 760px;
 }
 
-.heading__eyebrow {
+.heading__meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+}
+
+.heading__note {
   font-size: 0.75rem;
-  margin-bottom: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
 }
 
-.heading__index {
-  color: var(--text-faint);
-}
-
-.heading__index::after {
-  content: '/';
-  margin-left: 0.6rem;
+.heading__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
 }
 
 .heading__title {
-  font-size: clamp(1.9rem, 4vw, 2.75rem);
+  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+}
+
+.heading__tag {
+  padding: 0.2rem 0.6rem;
+  border: var(--line-thin);
+  border-radius: var(--radius-sm);
+  background: var(--yellow);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.72rem;
+  transform: rotate(-3deg);
 }
 
 .heading__lead {
-  margin-top: 1rem;
-  color: var(--text-muted);
-  font-size: 1.075rem;
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
 }
 </style>

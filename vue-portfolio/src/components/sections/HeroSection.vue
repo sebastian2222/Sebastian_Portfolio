@@ -1,76 +1,102 @@
 <script setup>
 import AppIcon from '@/components/AppIcon.vue'
 import { profile } from '@/data/profile'
-import { asset } from '@/utils/format'
 </script>
 
 <template>
   <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero__grid">
-      <div class="hero__copy">
-        <p class="mono status">
-          <span class="status__dot" aria-hidden="true" />
-          {{ profile.availability }} · {{ profile.location }}
-        </p>
+    <div class="container">
+      <div class="bench card">
+        <span class="tape" style="top: -12px; left: 48px; transform: rotate(-3deg)" />
+        <span class="tape tape--pink" style="top: -12px; right: 56px; transform: rotate(3deg)" />
 
-        <h1 id="hero-title" class="hero__title">
-          {{ profile.name }}
-          <span class="hero__role">
-            <span v-for="item in [profile.role, ...profile.focus]" :key="item">{{ item }}</span>
-          </span>
-        </h1>
+        <!-- Decorative doodles -->
+        <svg class="doodle doodle--star" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 2l2.9 6.9L22 9.8l-5.4 4.7L18.2 22 12 18.3 5.8 22l1.6-7.5L2 9.8l7.1-.9z"
+            fill="var(--yellow)"
+            stroke="var(--ink)"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <svg class="doodle doodle--squiggle" viewBox="0 0 120 24" aria-hidden="true">
+          <path
+            d="M2 12c10-10 20 10 30 0s20 10 30 0 20 10 30 0 20 10 26 0"
+            fill="none"
+            stroke="var(--tomato)"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+        </svg>
 
-        <p class="hero__headline">{{ profile.headline }}</p>
-        <p class="hero__intro">{{ profile.intro }}</p>
+        <div class="bench__grid">
+          <div class="intro card">
+            <p class="note">
+              <span class="hand">rhymes with ‘reliable’… sort of</span>
+            </p>
 
-        <div class="hero__actions">
-          <RouterLink :to="{ name: 'home', hash: '#projects' }" class="btn btn--primary">
-            See my work <AppIcon name="arrow-right" />
-          </RouterLink>
-          <a class="btn" :href="asset(profile.resume)" download>
-            <AppIcon name="download" /> Download résumé
-          </a>
-          <a
-            class="btn btn--ghost icon-only"
-            :href="profile.links.github"
-            target="_blank"
-            rel="noopener"
-          >
-            <AppIcon name="github" label="GitHub" />
-          </a>
-          <a
-            class="btn btn--ghost icon-only"
-            :href="profile.links.linkedin"
-            target="_blank"
-            rel="noopener"
-          >
-            <AppIcon name="linkedin" label="LinkedIn" />
-          </a>
+            <h1 id="hero-title" class="intro__title">
+              Hi, I’m {{ profile.shortName }}
+              <span class="wave" aria-hidden="true">👋</span>
+            </h1>
+            <p class="intro__headline">{{ profile.headline }}</p>
+            <p class="intro__body">{{ profile.intro }}</p>
+
+            <div class="intro__actions">
+              <RouterLink :to="{ name: 'home', hash: '#projects' }" class="btn btn--tomato">
+                See my work <AppIcon name="arrow-right" />
+              </RouterLink>
+              <RouterLink :to="{ name: 'home', hash: '#contact' }" class="btn">
+                <AppIcon name="mail" /> Get in touch
+              </RouterLink>
+            </div>
+          </div>
+
+          <div class="polaroid-wrap">
+            <span class="sticker tone-tomato sticker--a">★ {{ profile.availability }}</span>
+            <span class="sticker tone-yellow sticker--b">📍 Melbourne, AU</span>
+            <span class="sticker tone-mint sticker--c">
+              <AppIcon name="check" :size="14" /> {{ profile.workRights }}
+            </span>
+
+            <figure class="polaroid">
+              <span class="tape" style="top: -12px; left: 50%; translate: -50% 0; rotate: 2deg" />
+              <img
+                :src="profile.portrait"
+                :alt="`Portrait of ${profile.name}`"
+                width="720"
+                height="960"
+                fetchpriority="high"
+              />
+              <figcaption>
+                <span class="hand polaroid__caption">Sebastian in Melbourne</span>
+                <span class="mono polaroid__sub">backend · cloud · mobile</span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
+
+        <p class="bench__tag mono">
+          <span class="dot dot--pulse" aria-hidden="true" /> Sebastian’s workbench / systems &amp;
+          architecture
+        </p>
       </div>
 
-      <figure class="portrait">
-        <img
-          :src="profile.portrait"
-          :alt="`Portrait of ${profile.name}`"
-          width="720"
-          height="960"
-          fetchpriority="high"
-        />
-        <figcaption class="portrait__card">
-          <p class="mono portrait__label">Currently</p>
-          <p>CTO at <strong>MOSAIC</strong></p>
-          <p>Teaching Associate at <strong>Monash</strong></p>
-          <p class="mono portrait__rights">{{ profile.workRights }}</p>
-        </figcaption>
-      </figure>
-    </div>
-
-    <div class="container">
       <dl class="stats">
-        <div v-for="stat in profile.stats" :key="stat.label" class="stat">
-          <dt class="stat__label">{{ stat.label }}</dt>
-          <dd class="stat__value">{{ stat.value }}</dd>
+        <div
+          v-for="(s, i) in profile.stats"
+          :key="s.value"
+          class="stat card lift"
+          :class="`tone-${s.tone}`"
+          :style="{ '--tilt': i % 2 ? '1deg' : '-1deg' }"
+        >
+          <dt class="stat__kicker mono">
+            <span>{{ s.kicker }}</span>
+            <span class="stat__num">0{{ i + 1 }}</span>
+          </dt>
+          <dd class="stat__value">{{ s.value }}</dd>
+          <dd class="stat__label mono">{{ s.label }}</dd>
         </div>
       </dl>
     </div>
@@ -79,252 +105,292 @@ import { asset } from '@/utils/format'
 
 <style scoped>
 .hero {
-  position: relative;
-  padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 96px);
-  overflow: hidden;
+  padding-block: clamp(28px, 5vw, 56px) clamp(32px, 5vw, 48px);
 }
 
-/* Dot grid that fades out, a quiet nod to engineering paper. */
-.hero::before {
-  content: '';
+.bench {
+  position: relative;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 85% 20%, rgb(255 143 199 / 0.35) 0 90px, transparent 91px),
+    radial-gradient(circle at 12% 90%, rgb(45 214 160 / 0.3) 0 120px, transparent 121px),
+    radial-gradient(circle at 60% 110%, rgb(255 201 60 / 0.35) 0 140px, transparent 141px),
+    radial-gradient(rgb(27 31 59 / 0.12) 1.5px, transparent 1.5px) 0 0 / 22px 22px,
+    var(--paper-2);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+
+.doodle {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(var(--grid-dot) 1px, transparent 1px) 0 0 / 22px 22px;
-  mask: radial-gradient(ellipse 80% 70% at 30% 30%, #000 20%, transparent 75%);
   pointer-events: none;
 }
 
-.hero__grid {
+.doodle--star {
+  width: 44px;
+  top: 28px;
+  right: 42%;
+  rotate: 12deg;
+}
+
+.doodle--squiggle {
+  width: 120px;
+  bottom: 70px;
+  right: 40%;
+}
+
+.bench__grid {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.75fr);
-  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.35rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--text-muted);
-  font-size: 0.75rem;
+.intro {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: rgb(255 248 236 / 0.97);
+  border-radius: var(--radius-lg);
 }
 
-.status__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
+.note {
+  justify-self: start;
+  padding: 0.15rem 0.8rem;
+  border: var(--line-thin);
+  border-radius: var(--radius-sm);
+  background: var(--yellow-tint);
+  box-shadow: 3px 3px 0 var(--ink);
+  rotate: -1.5deg;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .status__dot {
-    animation: pulse 2.4s ease-in-out infinite;
-  }
+.note .hand {
+  font-size: 1.35rem;
 }
 
-@keyframes pulse {
-  50% {
-    box-shadow: 0 0 0 7px transparent;
-  }
-}
-
-.hero__title {
-  margin-top: 1.5rem;
-  font-size: clamp(2.6rem, 6.5vw, 4.9rem);
-  letter-spacing: -0.035em;
-  line-height: 1.02;
-}
-
-.hero__role > span {
-  white-space: nowrap;
-}
-
-.hero__role > span + span::before {
-  content: '/';
-  margin-inline: 0.6em;
-  color: var(--text-faint);
-}
-
-.hero__role {
+.intro__title {
   display: flex;
-  flex-wrap: wrap;
-  row-gap: 0.2rem;
-  margin-top: 0.85rem;
-  font-family: var(--font-mono);
-  font-size: clamp(0.85rem, 1.6vw, 1rem);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  color: var(--accent);
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+  letter-spacing: -0.03em;
 }
 
-.hero__headline {
-  margin-top: 1.75rem;
+.wave {
+  display: inline-grid;
+  place-items: center;
+  width: 1.2em;
+  height: 1.2em;
+  font-size: 0.7em;
+  border: var(--line-thin);
+  border-radius: var(--radius);
+  background: var(--yellow);
+  box-shadow: 3px 3px 0 var(--ink);
+  rotate: 6deg;
+}
+
+.intro__headline {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
-  line-height: 1.35;
-  max-width: 30ch;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  line-height: 1.3;
 }
 
-.hero__intro {
-  margin-top: 1rem;
-  max-width: 58ch;
-  color: var(--text-muted);
+.intro__body {
+  color: var(--ink-soft);
   font-size: 1.05rem;
 }
 
-.hero__actions {
+.intro__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  padding-top: 0.25rem;
 }
 
-.icon-only {
-  padding: 0.7rem;
+.polaroid-wrap {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 330px);
+  padding-block: 1rem;
 }
 
-.portrait {
+.polaroid {
   position: relative;
   margin: 0;
-  justify-self: end;
-  width: 100%;
-  max-width: 340px;
+  padding: 0.85rem 0.85rem 1.1rem;
+  background: var(--card);
+  border: var(--line);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  rotate: -2deg;
+  transition: rotate 200ms var(--ease);
 }
 
-.portrait img {
+.polaroid:hover {
+  rotate: 0deg;
+}
+
+.polaroid img {
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 4.4;
   object-fit: cover;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-strong);
-  filter: saturate(0.92);
+  object-position: 50% 18%;
+  border: var(--line-thin);
+  border-radius: var(--radius-sm);
 }
 
-.portrait::before {
-  content: '';
-  position: absolute;
-  inset: 14px -14px -14px 14px;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-lg);
-  opacity: 0.45;
-  z-index: -1;
-}
-
-.portrait__card {
-  position: absolute;
-  left: -2.5rem;
-  bottom: 1.5rem;
+.polaroid figcaption {
   display: grid;
-  gap: 0.15rem;
-  padding: 0.9rem 1.1rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
-  font-size: 0.9rem;
+  justify-items: center;
+  padding-top: 0.7rem;
 }
 
-.portrait__label {
-  color: var(--accent);
-  font-size: 0.68rem;
+.polaroid__caption {
+  font-size: 1.6rem;
+}
+
+.polaroid__sub {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
 }
 
-.portrait__rights {
-  margin-top: 0.35rem;
-  color: var(--text-faint);
-  font-size: 0.68rem;
+.sticker--a,
+.sticker--b,
+.sticker--c {
+  position: absolute;
+  z-index: 3;
+}
+
+.sticker--a {
+  top: 0;
+  left: -1.5rem;
+  rotate: -6deg;
+}
+
+.sticker--b {
+  top: 48%;
+  right: -1.5rem;
+  rotate: 6deg;
+}
+
+.sticker--c {
+  bottom: 0;
+  left: 0.5rem;
+  rotate: -2deg;
+}
+
+.bench__tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+  padding: 0.45rem 0.9rem;
+  border: var(--line-thin);
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--paper);
+  box-shadow: 3px 3px 0 var(--yellow);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .stats {
-  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: clamp(3rem, 7vw, 5rem) 0 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-  overflow: hidden;
+  gap: 1.25rem;
+  margin: 2rem 0 0;
 }
 
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  padding: 1.35rem 1.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--tone);
+  color: var(--tone-ink);
+  border-radius: var(--radius);
+  box-shadow: 4px 4px 0 var(--ink);
+  rotate: var(--tilt);
 }
 
-/* Value first visually; label first in the DOM so <dt> precedes <dd>. */
+.stat:hover {
+  rotate: 0deg;
+}
+
+.stat__kicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.9;
+}
+
+.stat__num {
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+}
+
 .stat__value {
-  order: -1;
-}
-
-.stat + .stat {
-  border-left: 1px solid var(--border);
-}
-
-.stat__value {
-  margin: 0;
+  margin: 0.5rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  font-weight: 800;
+  line-height: 1.1;
 }
 
 .stat__label {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  line-height: 1.4;
+  margin: 0.25rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 500;
 }
 
 @media (max-width: 900px) {
-  .hero__grid {
+  .bench__grid {
     grid-template-columns: 1fr;
   }
 
-  .portrait {
-    justify-self: start;
-    max-width: 300px;
+  .polaroid-wrap {
     order: -1;
+    width: min(80%, 280px);
   }
 
-  .portrait__card {
-    left: auto;
-    right: -1rem;
-    bottom: -1rem;
+  .doodle--star {
+    right: 1.5rem;
+    top: 1.5rem;
+  }
+
+  .doodle--squiggle {
+    display: none;
   }
 
   .stats {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .stat:nth-child(3) {
-    border-left: 0;
-  }
-
-  .stat:nth-child(n + 3) {
-    border-top: 1px solid var(--border);
-  }
 }
 
-@media (max-width: 420px) {
-  .portrait {
-    max-width: 210px;
+@media (max-width: 480px) {
+  .stats {
+    grid-template-columns: 1fr;
   }
 
-  .portrait__card {
+  .sticker--a {
+    left: -0.5rem;
+  }
+
+  .sticker--b {
     right: -0.5rem;
-    font-size: 0.8rem;
   }
 }
 </style>

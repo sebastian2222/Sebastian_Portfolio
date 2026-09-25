@@ -55,6 +55,6 @@ describe('ArchitectureFlow', () => {
       props: { lanes: [{ name: 'Path', steps: ['A', 'B', 'C'] }], caption: 'cap' },
     })
     expect(wrapper.findAll('ol > li').map((li) => li.text())).toEqual(['A', 'B', 'C'])
-    expect(wrapper.find('figcaption').text()).toBe('cap')
+    expect(wrapper.find('figcaption').text()).toContain('cap')
   })
 })

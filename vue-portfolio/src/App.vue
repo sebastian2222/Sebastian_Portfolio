@@ -19,10 +19,11 @@ import SiteFooter from '@/components/SiteFooter.vue'
   left: 12px;
   z-index: 100;
   padding: 0.6rem 1rem;
+  border: var(--line-thin);
   border-radius: var(--radius-sm);
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-weight: 600;
+  background: var(--yellow);
+  color: var(--ink);
+  font-weight: 700;
   text-decoration: none;
   transform: translateY(-200%);
   transition: transform 160ms var(--ease);

@@ -1,79 +1,89 @@
-/* Design tokens. Dark is the default; light applies via the OS preference
-   or an explicit data-theme set by the theme toggle. */
+/* "Engineer's Notebook" design tokens (see materials/design/stitch DESIGN.md).
+   Cream paper, navy ink, hard offset shadows and bright sticker accents. */
 :root {
-  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Space Grotesk Variable', var(--font-sans);
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --font-hand: 'Caveat', 'Segoe Print', cursive;
 
-  --bg: #0b0d12;
-  --bg-raised: #0f1218;
-  --surface: #12151c;
-  --surface-2: #181c26;
-  --border: #242a37;
-  --border-strong: #343b4b;
-  --text: #e7e9ee;
-  --text-muted: #9aa3b2;
-  --text-faint: #6b7385;
-  --accent: #7ce3a1;
-  --accent-strong: #a3f0c0;
-  --accent-ink: #07130c;
-  --accent-soft: rgb(124 227 161 / 0.12);
-  --warm: #f5b544;
-  --warm-soft: rgb(245 181 68 / 0.12);
-  --shadow: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
-  --grid-dot: rgb(255 255 255 / 0.05);
+  /* Paper & ink */
+  --paper: #fff8ec;
+  --paper-2: #f4ede1;
+  --paper-3: #e8e2d6;
+  --card: #ffffff;
+  --ink: #1b1f3b;
+  --ink-soft: #46464d;
+  --ink-faint: #6b6a72;
 
-  --radius-sm: 6px;
+  /* Sticker accents */
+  --tomato: #ff5a4e;
+  --tomato-text: #b52420; /* AA-safe for text on paper */
+  --yellow: #ffc93c;
+  --cobalt: #3b68ff;
+  --cobalt-text: #2447d6; /* AA-safe for text on paper */
+  --mint: #2dd6a0;
+  --pink: #ff8fc7;
+  --lilac: #b588f8;
+
+  /* Tints for chips */
+  --yellow-tint: #ffefc2;
+  --mint-tint: #d3f7ea;
+  --pink-tint: #ffe0ef;
+  --lilac-tint: #ece0fd;
+  --cobalt-tint: #dde5ff;
+  --tomato-tint: #ffe0dd;
+
+  /* Structure */
+  --line: 3px solid var(--ink);
+  --line-thin: 2px solid var(--ink);
+  --shadow-sm: 2px 2px 0 var(--ink);
+  --shadow: 5px 5px 0 var(--ink);
+  --shadow-lg: 7px 7px 0 var(--ink);
+  --radius-sm: 8px;
   --radius: 12px;
-  --radius-lg: 20px;
-  --container: 1120px;
+  --radius-lg: 18px;
+
+  --container: 1200px;
   --gutter: clamp(16px, 4vw, 32px);
-  --header-h: 64px;
+  --header-h: 76px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  color-scheme: dark;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
-    --bg: #f7f6f2;
-    --bg-raised: #f1efe9;
-    --surface: #ffffff;
-    --surface-2: #f3f1ec;
-    --border: #e3e0d7;
-    --border-strong: #cfcbc0;
-    --text: #16181d;
-    --text-muted: #555c69;
-    --text-faint: #7d8492;
-    --accent: #0f7a43;
-    --accent-strong: #0b5f34;
-    --accent-ink: #ffffff;
-    --accent-soft: rgb(15 122 67 / 0.09);
-    --warm: #a8620b;
-    --warm-soft: rgb(168 98 11 / 0.1);
-    --shadow: 0 1px 2px rgb(22 24 29 / 0.04), 0 16px 32px -20px rgb(22 24 29 / 0.18);
-    --grid-dot: rgb(22 24 29 / 0.06);
-    color-scheme: light;
-  }
-}
-
-:root[data-theme='light'] {
-  --bg: #f7f6f2;
-  --bg-raised: #f1efe9;
-  --surface: #ffffff;
-  --surface-2: #f3f1ec;
-  --border: #e3e0d7;
-  --border-strong: #cfcbc0;
-  --text: #16181d;
-  --text-muted: #555c69;
-  --text-faint: #7d8492;
-  --accent: #0f7a43;
-  --accent-strong: #0b5f34;
-  --accent-ink: #ffffff;
-  --accent-soft: rgb(15 122 67 / 0.09);
-  --warm: #a8620b;
-  --warm-soft: rgb(168 98 11 / 0.1);
-  --shadow: 0 1px 2px rgb(22 24 29 / 0.04), 0 16px 32px -20px rgb(22 24 29 / 0.18);
-  --grid-dot: rgb(22 24 29 / 0.06);
   color-scheme: light;
+}
+
+/* Tone helpers: set --tone / --tone-ink once, use everywhere. */
+.tone-yellow {
+  --tone: var(--yellow);
+  --tone-tint: var(--yellow-tint);
+  --tone-ink: var(--ink);
+}
+.tone-mint {
+  --tone: var(--mint);
+  --tone-tint: var(--mint-tint);
+  --tone-ink: var(--ink);
+}
+.tone-pink {
+  --tone: var(--pink);
+  --tone-tint: var(--pink-tint);
+  --tone-ink: var(--ink);
+}
+.tone-lilac {
+  --tone: var(--lilac);
+  --tone-tint: var(--lilac-tint);
+  --tone-ink: var(--ink);
+}
+.tone-cobalt {
+  --tone: #2f58e8; /* slightly deeper than --cobalt so white text passes AA */
+  --tone-tint: var(--cobalt-tint);
+  --tone-ink: #ffffff;
+}
+.tone-tomato {
+  --tone: var(--tomato);
+  --tone-tint: var(--tomato-tint);
+  --tone-ink: var(--ink);
+}
+.tone-navy {
+  --tone: var(--ink);
+  --tone-tint: var(--paper-3);
+  --tone-ink: var(--paper);
 }
