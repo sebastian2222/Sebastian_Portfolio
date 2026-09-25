@@ -629,8 +629,10 @@ export const projects = [
     year: '2025',
     context: 'Context-aware Android app',
     course: 'Monash University · FIT5046 Mobile & Distributed Computing',
-    team: 'Team',
-    role: 'Android engineer',
+    team: 'Team · sole engineer',
+    role: 'Sole software engineer (end to end)',
+    contribution:
+      'I built the entire app myself: barcode and OCR scanning, the offline-first Room data layer and item state machine, shared pantry boards, Firebase authentication, WorkManager and AlarmManager scheduling, and the context-aware power-outage monitor.',
     categories: ['mobile'],
     featured: true,
     stack: [
