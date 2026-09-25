@@ -9,7 +9,7 @@ Built with Vue 3 and Vite. No UI framework, no runtime dependencies beyond `vue`
 - **Data-driven content.** Every section renders from plain JS modules in [`src/data`](src/data), so you update content without touching components.
 - **Recruiter-focused case studies** at `/projects/:slug`. Each one covers the problem, what was built, personal contribution, architecture lanes, key decisions, results and an embedded demo video.
 - **Accessible by default.** Semantic landmarks, a skip link, visible focus, `aria-pressed` filters, a keyboard-dismissable menu and `prefers-reduced-motion` support.
-- **Dark and light themes.** Follows the OS setting, can be toggled and persisted, and is applied before first paint.
+- **"Engineer's Notebook" design.** Cream paper, navy ink, hard offset shadows, sticker badges, polaroids and handwritten notes. The design was made in Google Stitch; its spec lives in `../materials/design/` (git-ignored). Fonts are Bricolage Grotesque, Plus Jakarta Sans, JetBrains Mono and Caveat, all self-hosted. Colour tokens live in `src/styles/tokens.css`, and text colours meet WCAG AA.
 - **Quality gates.** ESLint, Prettier, Vitest (content-integrity, unit and component tests), npm audit, plus GitHub Actions CI with GitHub Pages deploy.
 
 ## Getting started
@@ -39,9 +39,8 @@ vue-portfolio/
 ├── src/
 │   ├── assets/images/      # Portrait + gallery (WebP, bundled and hashed)
 │   ├── components/
-│   │   ├── sections/       # Home page sections (Hero, Experience, Projects, …)
+│   │   ├── sections/       # Home page sections (Hero, Journey, Experience, Projects, …)
 │   │   └── *.vue           # Shared UI: header, footer, cards, icons, flow diagram
-│   ├── composables/        # useTheme
 │   ├── data/               # ← All site content lives here
 │   ├── directives/         # v-reveal scroll animation
 │   ├── router/             # Routes, scroll behaviour, document titles

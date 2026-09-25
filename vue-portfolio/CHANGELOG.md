@@ -11,6 +11,25 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Replace the self-hosted CloudPose demo with a YouTube/Vimeo embed if bandwidth becomes a concern.
 - Add screenshots for the Hush and PantryPals case studies.
 
+## [1.2.0] - 2026-09-25
+
+### Changed
+
+- **Complete visual redesign** to the "Engineer's Notebook" style from the Google Stitch design: cream dotted paper, navy ink, neo-brutalist hard shadows, sticker badges, washi tape, polaroid photos and Caveat handwritten notes. Fonts are now Bricolage Grotesque, Plus Jakarta Sans, JetBrains Mono and Caveat.
+- The Stitch mock-up's AI stock images were replaced with the real portrait and event photos.
+- Header now has the "Open to work" status, pill navigation, a CV button and a portrait avatar. The mobile menu is a full-width sticker panel.
+- Project cards and case-study headers each get their own accent colour. Decisions render as index cards, the "My part" section as a sticky note, and the architecture diagram uses hand-drawn arrows.
+- Open Graph image regenerated in the new palette.
+- **Content:** MOSAIC CTO role ended July 2026. Teaching now lists FIT5032 Internet Applications Development alongside FIT5046 and FIT1056. The NCR role is described as a payment processor, with its test-automation work added.
+
+### Added
+
+- "My journey" route map: Calicut → Hyderabad → Melbourne → now.
+
+### Removed
+
+- Dark/light theme toggle and `useTheme`. The notebook design is light-only by intent.
+
 ## [1.1.0] - 2026-09-25
 
 ### Changed
