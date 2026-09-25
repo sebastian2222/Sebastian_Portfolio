@@ -124,8 +124,8 @@ export const projects = [
       'Sensory-friendly navigation for Melbourne’s CBD: live crowd density and the quietest route, not just the fastest.',
     year: '2026',
     context: 'Monash Industry Experience capstone (team TE22) · City of Melbourne open data',
-    team: 'Team',
-    role: 'Backend, cloud & CI/CD',
+    team: 'Team · sole engineer',
+    role: 'Sole software engineer (end to end)',
     categories: ['cloud', 'fullstack', 'ai'],
     featured: true,
     stack: [
@@ -141,11 +141,13 @@ export const projects = [
       'ECR',
       'EventBridge',
       'S3',
+      'Terraform',
       'scikit-learn',
       'Amplify',
       'Vitest',
       'Playwright',
       'GitHub Actions',
+      'Dependabot',
     ],
     links: [{ label: 'hushapp.live', href: 'https://www.hushapp.live', kind: 'live' }],
     summary:
@@ -158,6 +160,7 @@ export const projects = [
       'A 24-hour crowd forecast: a scikit-learn pedestrian model, packaged as a container-image Lambda in ECR, runs every hour and writes forecasts for every sensor to S3, which drives a +1h to +24h prediction slider.',
       'Scheduled loader Lambdas that pull City of Melbourne open data (pedestrian counters, microclimate/noise sensors) into RDS.',
       'Grounding tools (box breathing, a 5-4-3-2-1 senses exercise) and step-by-step scenarios for rehearsing a trip.',
+      'Infrastructure as code with Terraform: a least-privilege IAM role per Lambda, EventBridge schedules and strict CORS, deployed behind an Amplify-hosted frontend.',
     ],
     architecture: {
       lanes: [
@@ -206,78 +209,121 @@ export const projects = [
       {
         title: 'Handover-grade documentation',
         detail:
-          'The repo ships an OpenAPI 3 spec, onboarding checklist, AWS runbook and cookbook, risk register and an infrastructure decision record for the next team.',
+          'The repo ships an OpenAPI 3 spec, onboarding checklist, AWS runbook and cookbook and a risk register, so the next team can run and extend it without me.',
       },
     ],
     results: {
       notes: [
-        'CI on every pull request runs Vitest unit tests, a high-severity npm audit and linting. Playwright E2E suites run locally or in Docker.',
+        'CI on every pull request runs Vitest unit tests, Playwright end-to-end tests, a high-severity npm audit and linting, with Dependabot keeping dependencies patched.',
         'Demoed at the Monash FIT Industry Experience Expo.',
       ],
     },
     contribution:
-      'Team capstone. My focus was the serverless backend, AWS infrastructure and the CI/CD pipeline.',
+      'I was the only software engineer on the capstone team, so I designed and built all of it: the Vue frontend and map experience, every Python Lambda, the PostGIS/pgRouting routing, the crowd-forecasting ML pipeline, the Terraform-managed AWS infrastructure and the CI/CD pipeline.',
   },
   {
     slug: 'ai-marking-harness',
-    title: 'Multi-agent marking harness',
+    title: 'Agentic marking harnesses',
     tagline:
-      'Claude Code sub-agents that score group projects against a rubric, citing evidence and checked by an independent verifier.',
-    year: '2025',
-    context: 'Monash University · Teaching Associate, FIT5046',
+      'Four Claude Code harnesses that mark code, reports, slide decks and requirements documents against a rubric, where every mark must cite evidence and be independently checked.',
+    year: '2026',
+    context: 'Monash University · Teaching Associate, FIT5046 & FIT1056',
     team: 'Solo',
     role: 'Designer & builder',
-    categories: ['ai'],
+    categories: ['ai', 'backend'],
     featured: true,
-    stack: ['Claude Code', 'Sub-agents', 'Prompt engineering', 'Harness engineering'],
+    stack: [
+      'Claude Code',
+      'Sub-agents',
+      'Harness engineering',
+      'Python',
+      'openpyxl',
+      'pypdf',
+      'Semantic Scholar API',
+      'OpenAlex API',
+      'LaTeX',
+    ],
     links: [],
     summary:
-      'An orchestrated team of five specialised AI agents that grounds every rubric score in cited evidence, then independently verifies it.',
+      'Rubric-driven marking pipelines for four assessments across two units. Specialised agents gather evidence, deterministic Python tools do the counting and checking, and a verifier plus the tutor have the final say.',
     problem:
-      'Marking a group Android project means cross-checking a codebase, a written report and a detailed rubric, for many teams. Doing it by hand is slow and hard to keep consistent. A single LLM prompt is fast but prone to confident, unsupported claims.',
+      'A tutor marking dozens of group submissions has to cross-check codebases, reports, slide decks and a detailed rubric, and keep marks consistent across the whole cohort. Doing that by hand is slow and drifts over time. A single LLM prompt is fast, but it makes confident claims it can’t back up.',
     built: [
-      'An orchestrator that sends each submission through five specialised sub-agents: code-inspector, report-auditor, rubric-scorer, uniqueness-checker and verifier.',
-      'Evidence-bound scoring: each criterion’s score must cite the files and report sections it relies on, so a human marker can check it quickly.',
-      'An independent verifier that re-checks scores and sorts any mismatch as hallucination, wrong file, arithmetic error or scope creep.',
-      'A full audit log of agent inputs, evidence and decisions for moderation and appeals.',
+      'Android group projects (FIT5046 A4): an orchestrator that hands each submission to five sub-agents (code-inspector, report-auditor, rubric-scorer, uniqueness-checker and verifier) and writes a mark sheet, a feedback CSV and a trace log.',
+      'Research-paper presentations (FIT5046 A1): a stdlib-only PPTX extractor, per-slide word-count audits, and reference checks that pull each paper’s real bibliography from Semantic Scholar with an OpenAlex fallback, so overlap is verified rather than suspected.',
+      'Design-proposal reports (FIT5046 A2): PDF/DOCX extraction, automatic location of the rubric’s sections, and page rendering when tables are embedded as images.',
+      'Software requirements specifications (FIT1056): extraction to text and page images, a JSON “source of truth” per team, generated LaTeX/Markdown feedback, and a check.py gate that validates ranges, arithmetic and penalties before release.',
+      'Spreadsheet writers that back up the workbook before every write and never touch cells tutors own, such as individual marks, formulas and deductions.',
     ],
     architecture: {
       lanes: [
         {
-          name: 'Pipeline',
+          name: 'A4 agents',
           steps: [
             'Submission',
             'code-inspector',
             'report-auditor',
-            'uniqueness-checker',
             'rubric-scorer',
+            'uniqueness-checker',
             'verifier',
-            'Human review',
+            'Tutor review',
+          ],
+        },
+        {
+          name: 'Deterministic',
+          steps: [
+            'Extract (PPTX / PDF / DOCX)',
+            'Audit (word counts, references)',
+            'Mark JSON',
+            'Validate',
+            'Render feedback / xlsx',
           ],
         },
       ],
       caption:
-        'Agents gather and score evidence. A separate verifier challenges the result before a human signs off.',
+        'LLM agents judge quality against the rubric. Anything countable or checkable (word limits, bibliographies, arithmetic, spreadsheet cells) is done by plain Python tools the agents call.',
     },
     decisions: [
       {
-        title: 'Separate the scorer from the checker',
+        title: 'The scorer never checks itself',
         detail:
-          'The verifier gets the evidence, not the scorer’s reasoning, so it can’t just agree with a wrong answer.',
+          'A separate read-only verifier re-greps the project and sorts every mismatch as hallucination, wrong file, arithmetic or scope creep. Only the affected criteria are re-run.',
       },
       {
-        title: 'A taxonomy of mismatches',
+        title: 'No evidence, no deduction',
         detail:
-          'Labelling mismatches (hallucination, wrong file, arithmetic, scope creep) turns vague “the AI was wrong” into feedback you can fix in the prompts and context.',
+          'Each deduction must quote the rubric band and point to a file or page. The harness also lists what an extractor can’t see (image content, layout, delivery) and is banned from commenting on it.',
       },
       {
-        title: 'Humans stay accountable',
+        title: 'Mark horizontally',
         detail:
-          'The harness cuts down cross-checking. Final marks are always set by teaching staff.',
+          'One criterion across every submission, then calibrate and lock, then the next criterion. Marks stay comparable across the cohort instead of drifting group by group.',
+      },
+      {
+        title: 'No double counting',
+        detail:
+          'A uniqueness map ensures a single implementation (for example WorkManager) earns credit under one criterion only.',
+      },
+      {
+        title: 'Versioned rubric interpretations',
+        detail:
+          'Each harness keeps a changelog (v1.0 to v2.1 for A1). Scripts can rebuild earlier iterations for audit, so every re-mark is explainable.',
+      },
+      {
+        title: 'Designed for context limits',
+        detail:
+          'State lives in files, not the conversation: one lab or group per session, a resumable STATUS block, and rubric documents loaded once.',
       },
     ],
     results: {
-      notes: ['Cut manual cross-checking time while keeping a complete audit trail.'],
+      metrics: [
+        { value: '4', label: 'harnesses across 2 units' },
+        { value: '5', label: 'specialised sub-agents (A4)' },
+        { value: '60+', label: 'group submissions marked' },
+      ],
+      notes: [
+        'Cut manual cross-checking time while keeping a full audit trail for moderation. Final marks are always set by the tutor.',
+      ],
     },
     privateNote: 'Source is private because it works on student submissions.',
   },
@@ -380,7 +426,7 @@ export const projects = [
     team: 'Solo',
     role: 'Engineer',
     categories: ['backend', 'cloud', 'data'],
-    featured: false,
+    featured: true,
     stack: [
       'Python',
       'Apache Kafka (KRaft)',
@@ -388,51 +434,87 @@ export const projects = [
       'Redis',
       'FastAPI',
       'Next.js',
+      'Docker Compose',
       'Terraform',
       'AWS EC2',
       'Prometheus',
       'Grafana',
       'GitHub Actions',
+      'Trivy',
+      'pytest',
     ],
     links: [],
     summary:
-      'An event-streaming pipeline on a single free-tier EC2 instance: partitioned Kafka topics, batched writes and Redis deduplication feed a 9-endpoint API.',
+      'An event-streaming pipeline built to run on a single free-tier EC2 instance: Kafka in KRaft mode, batched and deduplicated writes, a cached FastAPI service, a Next.js UI and self-hosted Prometheus and Grafana.',
     problem:
-      'Trending lists on any one site are noisy and narrow. SignalStack combines activity from GitHub and Hacker News into one topic score, and was built to run cheaply on one small machine.',
+      'Trending lists on any one site are noisy and narrow. SignalStack combines developer activity from GitHub and Hacker News into one score per CS topic, and it had to run on one small machine at zero extra cost.',
     built: [
-      'Producers that pull GitHub and Hacker News activity into partitioned Kafka topics (KRaft mode, no ZooKeeper).',
-      'Fault-tolerant consumers that batch PostgreSQL writes and deduplicate events in Redis. That raised throughput about 250× at no extra infrastructure cost.',
-      'A 9-endpoint FastAPI service with Redis caching, and a Next.js frontend.',
-      'Terraform-provisioned AWS infrastructure, GitHub Actions CI/CD, and self-hosted Prometheus and Grafana monitoring.',
+      'A producer that polls GitHub Events (stars and forks) and Hacker News every 60 seconds, maps each post to canonical topics with word-boundary matching (so “java” never matches “javascript”), and publishes one Kafka event per topic.',
+      'Redis deduplication (SET NX with a 24-hour TTL), so producer restarts never republish and memory stays bounded.',
+      'A consumer that batches up to 100 events or 2 seconds, scores them with log-scaled upvotes times a per-source weight, writes one PostgreSQL transaction per batch and commits Kafka offsets only after a successful write.',
+      'A FastAPI service (trending, real-time, topic, compare, sources, recommend, health, metrics and Swagger docs) using cache-aside Redis with per-endpoint TTLs, plus a Next.js front end.',
+      'Observability: Prometheus metrics for requests, latency histograms, cache hits and consumer lag, with three provisioned Grafana dashboards for pipeline health, API performance and data quality.',
+      'Delivery: Terraform for AWS, a GitHub Actions deploy to EC2, pytest on pull requests and Trivy image scanning for critical and high CVEs.',
     ],
     architecture: {
       lanes: [
-        { name: 'Ingest', steps: ['GitHub + HN APIs', 'Producers', 'Kafka topics (partitioned)'] },
+        {
+          name: 'Ingest',
+          steps: [
+            'GitHub + HN APIs',
+            'Producer (60 s poll)',
+            'Redis dedup',
+            'Kafka · 4 partitions',
+          ],
+        },
         {
           name: 'Process',
-          steps: ['Consumer group', 'Redis dedup', 'Batched writes', 'PostgreSQL', 'Trend scoring'],
+          steps: [
+            'Consumer group',
+            'Batch 100 / 2 s',
+            'Score + aggregate',
+            'PostgreSQL',
+            'Commit offsets',
+          ],
         },
-        { name: 'Serve', steps: ['FastAPI (9 endpoints)', 'Redis cache', 'Next.js UI'] },
+        { name: 'Serve', steps: ['FastAPI', 'Redis cache-aside', 'Next.js UI'] },
+        { name: 'Observe', steps: ['/metrics', 'Prometheus', 'Grafana dashboards'] },
       ],
       caption:
-        'Everything runs on one free-tier EC2 host, provisioned with Terraform and monitored with Prometheus and Grafana.',
+        'The whole stack runs in Docker Compose on one host. Producer and consumer write their metrics to Redis, and the API exports them on each Prometheus scrape.',
     },
     decisions: [
       {
         title: 'Batch, then deduplicate',
         detail:
-          'Writing row by row was the bottleneck. Batched inserts plus Redis-based dedup delivered about a 250× throughput gain.',
+          'Row-by-row writes were the bottleneck. Batched transactions, in-batch aggregation and Redis dedup raised throughput about 250× on the same hardware.',
       },
       {
-        title: 'Kafka in KRaft mode',
+        title: 'At-least-once, safely',
         detail:
-          'Dropping ZooKeeper frees enough memory to run the whole stack on a single free-tier instance.',
+          'Offsets are committed only after Postgres accepts the batch, and upserts are aggregated first, so a crash replays events instead of losing them.',
+      },
+      {
+        title: 'Kafka for decoupling, not volume',
+        detail:
+          'Kafka stays for replay and independent consumer groups (such as a future ML consumer). KRaft mode drops ZooKeeper and saves about 200 MB of RAM.',
+      },
+      {
+        title: 'Metrics across containers',
+        detail:
+          'Producer and consumer run in separate containers, so they write their counters to Redis and a custom collector exposes them through the API’s /metrics endpoint.',
+      },
+      {
+        title: 'Say no to Kubernetes',
+        detail:
+          'A single node has nothing to orchestrate, and EKS has no free tier. The decision records explain what was left out and why.',
       },
     ],
     results: {
       metrics: [
         { value: '~250×', label: 'consumer throughput gain' },
         { value: '$0', label: 'extra infrastructure' },
+        { value: '16/16', label: 'pytest checks passing' },
       ],
     },
     privateNote: 'Source available on request.',
@@ -587,7 +669,7 @@ export const projects = [
     team: 'Solo',
     role: 'Kernel developer',
     categories: ['systems'],
-    featured: false,
+    featured: true,
     stack: ['SPL', 'ExpL', 'XSM simulator', 'Assembly', 'C toolchain (Lex/Yacc)'],
     links: [
       { label: 'eXpOS platform', href: 'https://exposnitc.github.io/', kind: 'docs' },

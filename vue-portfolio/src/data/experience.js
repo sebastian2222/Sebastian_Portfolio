@@ -37,7 +37,7 @@ export const experience = [
       'Teach FIT5046 Mobile & Distributed Computing Systems and FIT1056 Introduction to Software Engineering.',
     highlights: [
       'Mentor 100+ students in Android development with Jetpack Compose, MVVM and REST API integration.',
-      'Designed a multi-agent Claude Code marking harness: five specialised sub-agents produce evidence-bound rubric scores, then an independent verifier classifies every mismatch.',
+      'Built four Claude Code marking harnesses across FIT5046 and FIT1056 (Android code, reports, slide decks and SRS documents), from a five-agent pipeline with an independent verifier to Python tools that verify references against Semantic Scholar/OpenAlex and validate marks before release.',
       'Rated 91% for student satisfaction (SETU) through structured mentoring and technical support.',
     ],
     stack: ['Kotlin', 'Jetpack Compose', 'Claude Code', 'Multi-agent orchestration'],
