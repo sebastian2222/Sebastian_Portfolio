@@ -1,45 +1,66 @@
 [
   {
     "id": 1,
-    "title": "PantryPals \u2013 Smart Kitchen App",
-    "slug": "pantrypals",
-    "description": "A context-aware Android app using ML Kit, Firebase...",
-    "image": "/assets/pantrypals.png",
-    "technologies": [
-      "Kotlin",
-      "Firebase"
-    ],
-    "details": "Built using Jetpack Compose, tracks food expiry...",
-    "link": "https://pantrypals.demo"
+    "title": "PantryPals – Smart Kitchen App",
+    "description": "Context-aware Android app using ML Kit & Firebase.",
+    "image": "/images/project1.jpg",
+    "technologies": ["Kotlin", "Firebase", "Jetpack Compose"],
+    "link": "https://example.com/project1"
   },
   {
     "id": 2,
-    "title": "GetFit Victoria \u2013 Sports Activity Finder",
-    "slug": "getfit-victoria",
-    "description": "A Vue3 + Firestore web app to help people find sports venues, rate facilities, and register for community events.",
+    "title": "GetFit Victoria – Sports Activity Finder",
+    "description": "Helps users find and register for community events.",
     "image": "/images/project2.jpg",
-    "technologies": [
-      "Vue 3",
-      "Firebase",
-      "Cloud Functions",
-      "SendGrid"
-    ],
-    "details": "The project lets users browse and register for sports events with integrated venue ratings and automated email notifications.",
+    "technologies": ["Vue 3", "Firebase", "SendGrid"],
     "link": "https://example.com/project2"
   },
   {
     "id": 3,
-    "title": "SwapUP \u2013 Toy & Game Swapping Platform",
-    "slug": "swapup",
-    "description": "A mobile-first platform for parents and hobbyists to safely swap toys and collectibles with review-driven flows.",
+    "title": "SwapUP – Toy Swapping Platform",
+    "description": "Toy and game exchange with parent-friendly UX.",
     "image": "/images/project3.jpg",
-    "technologies": [
-      "Vue 3",
-      "Node.js",
-      "Firebase",
-      "PrimeVue"
-    ],
-    "details": "Users can create listings, initiate swap requests, and rate exchanges with a secure messaging system.",
+    "technologies": ["Vue 3", "Node.js", "PrimeVue"],
     "link": "https://example.com/project3"
+  },
+  {
+    "id": 4,
+    "title": "HealthTracker Web App",
+    "description": "Track daily meals, steps, calories and fitness goals.",
+    "image": "/images/project4.jpg",
+    "technologies": ["Vue 3", "Express", "MongoDB"],
+    "link": "https://example.com/project4"
+  },
+  {
+    "id": 5,
+    "title": "EduPlatform LMS",
+    "description": "Lightweight LMS for video courses and progress tracking.",
+    "image": "/images/project5.jpg",
+    "technologies": ["Vue", "Firebase", "SCSS"],
+    "link": "https://example.com/project5"
+  },
+  {
+    "id": 6,
+    "title": "WeatherCast",
+    "description": "Real-time weather forecasts with map integration.",
+    "image": "/images/project6.jpg",
+    "technologies": ["Vue", "OpenWeather API", "Tailwind"],
+    "link": "https://example.com/project6"
+  },
+  {
+    "id": 7,
+    "title": "Portfolio Builder",
+    "description": "Drag-and-drop portfolio builder for developers.",
+    "image": "/images/project7.jpg",
+    "technologies": ["Vue 3", "Firebase Auth", "Quill.js"],
+    "link": "https://example.com/project7"
+  },
+  {
+    "id": 8,
+    "title": "NewsFlash App",
+    "description": "Aggregates news by topic using News API.",
+    "image": "/images/project8.jpg",
+    "technologies": ["Vue 3", "News API", "Bootstrap"],
+    "link": "https://example.com/project8"
   }
 ]
