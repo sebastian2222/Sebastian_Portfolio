@@ -11,6 +11,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Replace the self-hosted CloudPose demo with a YouTube/Vimeo embed if bandwidth becomes a concern.
 - Add screenshots for the Hush and PantryPals case studies.
 
+## [1.3.0] - 2026-09-25
+
+### Changed
+
+- **Hosting moved to Vercel.** `vercel.json` adds SPA rewrites, immutable caching for hashed assets and security headers (HSTS, nosniff, frame-deny, referrer and permissions policies).
+- CI is now quality gates only (format, lint, tests, audit, build). The GitHub Pages deploy job was removed.
+
 ## [1.2.1] - 2026-09-25
 
 ### Changed

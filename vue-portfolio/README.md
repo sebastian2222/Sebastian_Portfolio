@@ -67,11 +67,17 @@ Raw authoring material (coursework archives, work repositories, original photos)
 
 ## Deployment
 
-Pushing to `master` runs [`.github/workflows/ci.yml`](../.github/workflows/ci.yml). It verifies the build and then deploys to **GitHub Pages**.
+The site deploys on **Vercel** through its Git integration: pushes to `master` go to production, and every pull request gets its own preview URL. [`vercel.json`](vercel.json) sets the build, the SPA rewrites (so deep links like `/projects/hush` work), long-lived caching for hashed assets and security headers.
 
-One-time setup: **Settings → Pages → Source: GitHub Actions**.
+One-time Vercel setup:
 
-The workflow sets `BASE_PATH=/<repo-name>/` for a project site. For a custom domain or a user site, set `BASE_PATH=/` (and add `public/CNAME` if needed). The build also emits `404.html` so deep links like `/projects/hush` work on Pages.
+1. **Add New → Project** → import `sebastian2222/Sebastian_Portfolio`.
+2. Set **Root Directory** to `vue-portfolio`. Everything else is read from `vercel.json`.
+3. Deploy. Optionally add a custom domain under **Settings → Domains**.
+
+GitHub Actions ([`ci.yml`](../.github/workflows/ci.yml)) still runs the quality gates (format, lint, tests, audit, build) on every push and PR.
+
+`BASE_PATH` (default `/`) and the generated `404.html` exist so the same build can also be hosted on a sub-path, such as GitHub Pages.
 
 ## License
 
