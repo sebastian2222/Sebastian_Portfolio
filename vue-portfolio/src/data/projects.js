@@ -27,7 +27,8 @@ export const projects = [
   {
     slug: 'ifrc-world-disasters-report',
     title: 'IFRC World Disasters Report 2026',
-    tagline: 'The digital home of the IFRC’s flagship report, launched in Geneva to 30,000+ users on day one.',
+    tagline:
+      'The digital home of the IFRC’s flagship report, launched in Geneva to 30,000+ users on day one.',
     year: '2026',
     context: 'MOSAIC × International Federation of Red Cross and Red Crescent Societies',
     team: 'Team',
@@ -66,11 +67,24 @@ export const projects = [
       lanes: [
         {
           name: 'Delivery',
-          steps: ['Pull request', 'Lint · tests · audit · CodeQL', 'Preview Worker', 'Release tag', 'Staging', 'Manual prod deploy'],
+          steps: [
+            'Pull request',
+            'Lint · tests · audit · CodeQL',
+            'Preview Worker',
+            'Release tag',
+            'Staging',
+            'Manual prod deploy',
+          ],
         },
         {
           name: 'Runtime',
-          steps: ['Reader', 'Cloudflare edge', 'Next.js on Workers (OpenNext)', 'D1 search index', 'Static assets & HLS'],
+          steps: [
+            'Reader',
+            'Cloudflare edge',
+            'Next.js on Workers (OpenNext)',
+            'D1 search index',
+            'Static assets & HLS',
+          ],
         },
       ],
       caption:
@@ -106,7 +120,8 @@ export const projects = [
   {
     slug: 'hush',
     title: 'Hush',
-    tagline: 'Sensory-friendly navigation for Melbourne’s CBD: live crowd density and the quietest route, not just the fastest.',
+    tagline:
+      'Sensory-friendly navigation for Melbourne’s CBD: live crowd density and the quietest route, not just the fastest.',
     year: '2026',
     context: 'Monash Industry Experience capstone (team TE22) · City of Melbourne open data',
     team: 'Team',
@@ -148,7 +163,12 @@ export const projects = [
       lanes: [
         {
           name: 'Request path',
-          steps: ['Vue SPA on Amplify', 'API Gateway', 'Python Lambdas', 'RDS · PostGIS · pgRouting'],
+          steps: [
+            'Vue SPA on Amplify',
+            'API Gateway',
+            'Python Lambdas',
+            'RDS · PostGIS · pgRouting',
+          ],
         },
         {
           name: 'Ingestion',
@@ -156,7 +176,12 @@ export const projects = [
         },
         {
           name: 'Forecasting',
-          steps: ['Hourly trigger', 'ECR container Lambda (scikit-learn)', 'S3 forecast JSON', 'Prediction slider'],
+          steps: [
+            'Hourly trigger',
+            'ECR container Lambda (scikit-learn)',
+            'S3 forecast JSON',
+            'Prediction slider',
+          ],
         },
       ],
       caption:
@@ -196,7 +221,8 @@ export const projects = [
   {
     slug: 'ai-marking-harness',
     title: 'Multi-agent marking harness',
-    tagline: 'Claude Code sub-agents that score group projects against a rubric, citing evidence and checked by an independent verifier.',
+    tagline:
+      'Claude Code sub-agents that score group projects against a rubric, citing evidence and checked by an independent verifier.',
     year: '2025',
     context: 'Monash University · Teaching Associate, FIT5046',
     team: 'Solo',
@@ -219,10 +245,19 @@ export const projects = [
       lanes: [
         {
           name: 'Pipeline',
-          steps: ['Submission', 'code-inspector', 'report-auditor', 'uniqueness-checker', 'rubric-scorer', 'verifier', 'Human review'],
+          steps: [
+            'Submission',
+            'code-inspector',
+            'report-auditor',
+            'uniqueness-checker',
+            'rubric-scorer',
+            'verifier',
+            'Human review',
+          ],
         },
       ],
-      caption: 'Agents gather and score evidence. A separate verifier challenges the result before a human signs off.',
+      caption:
+        'Agents gather and score evidence. A separate verifier challenges the result before a human signs off.',
     },
     decisions: [
       {
@@ -237,7 +272,8 @@ export const projects = [
       },
       {
         title: 'Humans stay accountable',
-        detail: 'The harness cuts down cross-checking. Final marks are always set by teaching staff.',
+        detail:
+          'The harness cuts down cross-checking. Final marks are always set by teaching staff.',
       },
     ],
     results: {
@@ -248,14 +284,24 @@ export const projects = [
   {
     slug: 'cloudpose',
     title: 'CloudPose',
-    tagline: 'Human pose estimation as a web service, containerised and load-tested on Kubernetes under tight CPU and memory limits.',
+    tagline:
+      'Human pose estimation as a web service, containerised and load-tested on Kubernetes under tight CPU and memory limits.',
     year: '2025',
     context: 'Monash · FIT5225 Cloud Computing & Security',
     team: 'Solo',
     role: 'Engineer',
     categories: ['cloud', 'backend', 'ai'],
     featured: true,
-    stack: ['Python', 'FastAPI', 'YOLO11-pose', 'ONNX Runtime', 'OpenCV', 'Docker', 'Kubernetes', 'Locust'],
+    stack: [
+      'Python',
+      'FastAPI',
+      'YOLO11-pose',
+      'ONNX Runtime',
+      'OpenCV',
+      'Docker',
+      'Kubernetes',
+      'Locust',
+    ],
     links: [{ label: 'Demo video', href: 'media/cloudpose-demo.mp4', kind: 'demo' }],
     media: { video: 'media/cloudpose-demo.mp4', poster: 'media/cloudpose-demo-poster.webp' },
     summary:
@@ -272,10 +318,18 @@ export const projects = [
       lanes: [
         {
           name: 'Serving',
-          steps: ['Client (base64 image)', 'NodePort Service', 'Pod: FastAPI', 'Bounded queue', 'Single inference worker', 'ONNX INT8 model'],
+          steps: [
+            'Client (base64 image)',
+            'NodePort Service',
+            'Pod: FastAPI',
+            'Bounded queue',
+            'Single inference worker',
+            'ONNX INT8 model',
+          ],
         },
       ],
-      caption: 'Each pod runs one inference at a time. Extra requests wait in a bounded queue or get a fast 429, not an out-of-memory kill.',
+      caption:
+        'Each pod runs one inference at a time. Extra requests wait in a bounded queue or get a fast 429, not an out-of-memory kill.',
     },
     decisions: [
       {
@@ -319,14 +373,27 @@ export const projects = [
   {
     slug: 'signalstack',
     title: 'SignalStack',
-    tagline: 'A self-hosted tech-trend radar that streams GitHub and Hacker News activity through Kafka to score what’s trending in CS.',
+    tagline:
+      'A self-hosted tech-trend radar that streams GitHub and Hacker News activity through Kafka to score what’s trending in CS.',
     year: '2026',
     context: 'Personal project',
     team: 'Solo',
     role: 'Engineer',
     categories: ['backend', 'cloud', 'data'],
-    featured: true,
-    stack: ['Python', 'Apache Kafka (KRaft)', 'PostgreSQL', 'Redis', 'FastAPI', 'Next.js', 'Terraform', 'AWS EC2', 'Prometheus', 'Grafana', 'GitHub Actions'],
+    featured: false,
+    stack: [
+      'Python',
+      'Apache Kafka (KRaft)',
+      'PostgreSQL',
+      'Redis',
+      'FastAPI',
+      'Next.js',
+      'Terraform',
+      'AWS EC2',
+      'Prometheus',
+      'Grafana',
+      'GitHub Actions',
+    ],
     links: [],
     summary:
       'An event-streaming pipeline on a single free-tier EC2 instance: partitioned Kafka topics, batched writes and Redis deduplication feed a 9-endpoint API.',
@@ -341,36 +408,66 @@ export const projects = [
     architecture: {
       lanes: [
         { name: 'Ingest', steps: ['GitHub + HN APIs', 'Producers', 'Kafka topics (partitioned)'] },
-        { name: 'Process', steps: ['Consumer group', 'Redis dedup', 'Batched writes', 'PostgreSQL', 'Trend scoring'] },
+        {
+          name: 'Process',
+          steps: ['Consumer group', 'Redis dedup', 'Batched writes', 'PostgreSQL', 'Trend scoring'],
+        },
         { name: 'Serve', steps: ['FastAPI (9 endpoints)', 'Redis cache', 'Next.js UI'] },
       ],
-      caption: 'Everything runs on one free-tier EC2 host, provisioned with Terraform and monitored with Prometheus and Grafana.',
+      caption:
+        'Everything runs on one free-tier EC2 host, provisioned with Terraform and monitored with Prometheus and Grafana.',
     },
     decisions: [
       {
         title: 'Batch, then deduplicate',
-        detail: 'Writing row by row was the bottleneck. Batched inserts plus Redis-based dedup delivered about a 250× throughput gain.',
+        detail:
+          'Writing row by row was the bottleneck. Batched inserts plus Redis-based dedup delivered about a 250× throughput gain.',
       },
       {
         title: 'Kafka in KRaft mode',
-        detail: 'Dropping ZooKeeper frees enough memory to run the whole stack on a single free-tier instance.',
+        detail:
+          'Dropping ZooKeeper frees enough memory to run the whole stack on a single free-tier instance.',
       },
     ],
-    results: { metrics: [{ value: '~250×', label: 'consumer throughput gain' }, { value: '$0', label: 'extra infrastructure' }] },
+    results: {
+      metrics: [
+        { value: '~250×', label: 'consumer throughput gain' },
+        { value: '$0', label: 'extra infrastructure' },
+      ],
+    },
     privateNote: 'Source available on request.',
   },
   {
     slug: 'birdtag',
     title: 'BirdTag',
-    tagline: 'A serverless media library that automatically tags bird species in uploaded photos, videos and audio.',
+    tagline:
+      'A serverless media library that automatically tags bird species in uploaded photos, videos and audio.',
     year: '2025',
     context: 'Monash · FIT5225 Cloud Computing & Security',
     team: 'Team of 4',
     role: 'Backend engineer',
     categories: ['cloud', 'backend', 'ai'],
     featured: true,
-    stack: ['AWS Lambda', 'S3', 'DynamoDB', 'Cognito', 'API Gateway', 'SNS', 'ECR', 'YOLO (ONNX)', 'BirdNET', 'OpenCV', 'Python'],
-    links: [{ label: 'Live app (sign-up required)', href: 'https://fit-5225-a3-frontend.vercel.app/', kind: 'live' }],
+    stack: [
+      'AWS Lambda',
+      'S3',
+      'DynamoDB',
+      'Cognito',
+      'API Gateway',
+      'SNS',
+      'ECR',
+      'YOLO (ONNX)',
+      'BirdNET',
+      'OpenCV',
+      'Python',
+    ],
+    links: [
+      {
+        label: 'Live app (sign-up required)',
+        href: 'https://fit-5225-a3-frontend.vercel.app/',
+        kind: 'live',
+      },
+    ],
     summary:
       'Uploads trigger Lambda-based species detection (YOLO for images and video, BirdNET for audio). Researchers can then search, bulk-tag and subscribe to species alerts.',
     problem:
@@ -383,20 +480,35 @@ export const projects = [
     ],
     architecture: {
       lanes: [
-        { name: 'Ingest', steps: ['Upload', 'S3', 'Tagging Lambda (YOLO / BirdNET)', 'Thumbnail Lambda', 'DynamoDB'] },
-        { name: 'Query', steps: ['Web app', 'Cognito', 'API Gateway', 'Query Lambdas', 'DynamoDB / S3'] },
+        {
+          name: 'Ingest',
+          steps: [
+            'Upload',
+            'S3',
+            'Tagging Lambda (YOLO / BirdNET)',
+            'Thumbnail Lambda',
+            'DynamoDB',
+          ],
+        },
+        {
+          name: 'Query',
+          steps: ['Web app', 'Cognito', 'API Gateway', 'Query Lambdas', 'DynamoDB / S3'],
+        },
         { name: 'Notify', steps: ['New tags', 'SNS topic', 'Subscriber email'] },
       ],
-      caption: 'Model runtimes ship as Lambda layers and ECR images, so inference scales with uploads and there are no model servers to run.',
+      caption:
+        'Model runtimes ship as Lambda layers and ECR images, so inference scales with uploads and there are no model servers to run.',
     },
     decisions: [
       {
         title: 'Models as Lambda layers and images',
-        detail: 'Packaging TFLite, librosa and ONNX runtimes as layers and container images kept inference serverless and pay-per-use.',
+        detail:
+          'Packaging TFLite, librosa and ONNX runtimes as layers and container images kept inference serverless and pay-per-use.',
       },
       {
         title: 'Consistent deletes',
-        detail: 'Deleting a file removes the original, its thumbnail and the metadata record, and reports what was deleted and what was skipped, so storage and index never drift apart.',
+        detail:
+          'Deleting a file removes the original, its thumbnail and the metadata record, and reports what was deleted and what was skipped, so storage and index never drift apart.',
       },
     ],
     contribution:
@@ -405,14 +517,26 @@ export const projects = [
   {
     slug: 'pantrypals',
     title: 'PantryPals',
-    tagline: 'An Android app that cuts household food waste with barcode and expiry-date scanning, shared pantries and smart reminders.',
+    tagline:
+      'An Android app that cuts household food waste with barcode and expiry-date scanning, shared pantries and smart reminders.',
     year: '2025',
     context: 'Monash · FIT5046 Mobile & Distributed Computing Systems',
     team: 'Team',
     role: 'Android engineer',
     categories: ['mobile'],
     featured: true,
-    stack: ['Kotlin', 'Jetpack Compose', 'Room', 'Retrofit', 'CameraX', 'ML Kit', 'WorkManager', 'AlarmManager', 'Firebase Auth', 'Coroutines & Flow'],
+    stack: [
+      'Kotlin',
+      'Jetpack Compose',
+      'Room',
+      'Retrofit',
+      'CameraX',
+      'ML Kit',
+      'WorkManager',
+      'AlarmManager',
+      'Firebase Auth',
+      'Coroutines & Flow',
+    ],
     links: [],
     summary:
       'Scan a barcode to fill in a product, OCR the use-by date, share a pantry board with your household, and get reminded before things go off.',
@@ -427,27 +551,37 @@ export const projects = [
     ],
     architecture: {
       lanes: [
-        { name: 'Capture', steps: ['CameraX', 'ML Kit barcode / OCR', 'OpenFoodFacts (Retrofit)', 'Room'] },
+        {
+          name: 'Capture',
+          steps: ['CameraX', 'ML Kit barcode / OCR', 'OpenFoodFacts (Retrofit)', 'Room'],
+        },
         { name: 'Background', steps: ['WorkManager rollover', 'AlarmManager', 'Notifications'] },
-        { name: 'Context', steps: ['Power readings (Flow)', 'Outage detector', 'FSANZ rules', 'Item state update'] },
+        {
+          name: 'Context',
+          steps: ['Power readings (Flow)', 'Outage detector', 'FSANZ rules', 'Item state update'],
+        },
       ],
-      caption: 'One-way data flow: repositories feed ViewModels, which expose StateFlow to Compose.',
+      caption:
+        'One-way data flow: repositories feed ViewModels, which expose StateFlow to Compose.',
     },
     decisions: [
       {
         title: 'Offline-first',
-        detail: 'Room is the source of truth, so the app works in a kitchen with bad reception and syncs details when it can.',
+        detail:
+          'Room is the source of truth, so the app works in a kitchen with bad reception and syncs details when it can.',
       },
       {
         title: 'Rules decoupled from sensors',
-        detail: 'Sensor detection, food-safety rules and state changes are separate stages, so each can be tested with virtual time.',
+        detail:
+          'Sensor detection, food-safety rules and state changes are separate stages, so each can be tested with virtual time.',
       },
     ],
   },
   {
     slug: 'expos-kernel',
     title: 'eXpOS operating system kernel',
-    tagline: 'A multitasking OS kernel written from scratch for a simulated machine: scheduler, virtual memory, file system and system calls.',
+    tagline:
+      'A multitasking OS kernel written from scratch for a simulated machine: scheduler, virtual memory, file system and system calls.',
     year: '2021',
     context: 'NIT Calicut · B.Tech CSE · eXpOS project',
     team: 'Solo',
@@ -457,7 +591,11 @@ export const projects = [
     stack: ['SPL', 'ExpL', 'XSM simulator', 'Assembly', 'C toolchain (Lex/Yacc)'],
     links: [
       { label: 'eXpOS platform', href: 'https://exposnitc.github.io/', kind: 'docs' },
-      { label: 'Roadmap I followed', href: 'https://exposnitc.github.io/Roadmap.html', kind: 'docs' },
+      {
+        label: 'Roadmap I followed',
+        href: 'https://exposnitc.github.io/Roadmap.html',
+        kind: 'docs',
+      },
     ],
     summary:
       'About 3,200 lines of kernel code covering boot, interrupts, round-robin scheduling, demand paging, a file system and a process/semaphore API.',
@@ -474,28 +612,54 @@ export const projects = [
     architecture: {
       lanes: [
         { name: 'User space', steps: ['ExpL programs', 'Library calls', 'Software interrupts'] },
-        { name: 'Kernel', steps: ['Syscall handlers', 'Process / memory / file / device managers', 'Scheduler', 'XSM hardware'] },
+        {
+          name: 'Kernel',
+          steps: [
+            'Syscall handlers',
+            'Process / memory / file / device managers',
+            'Scheduler',
+            'XSM hardware',
+          ],
+        },
       ],
-      caption: 'Layered like a real Unix-style kernel: user programs trap into handlers, which call manager modules that own the hardware.',
+      caption:
+        'Layered like a real Unix-style kernel: user programs trap into handlers, which call manager modules that own the hardware.',
     },
     decisions: [
       {
         title: 'Concurrency you can see',
-        detail: 'Writing merge sort in sequential and concurrent (fork + semaphore) versions was a practical test of the scheduler and synchronisation primitives.',
+        detail:
+          'Writing merge sort in sequential and concurrent (fork + semaphore) versions was a practical test of the scheduler and synchronisation primitives.',
       },
     ],
   },
   {
     slug: 'mate-aws-architecture',
     title: 'Cloud architecture for AI fitness coaching',
-    tagline: 'An AWS architecture for real-time video pose analysis, global competitions and payments at the scale of a million users.',
+    tagline:
+      'An AWS architecture for real-time video pose analysis, global competitions and payments at the scale of a million users.',
     year: '2025',
     context: 'Monash · FIT5225 Cloud Computing & Security',
     team: 'Solo',
     role: 'Solutions architect',
     categories: ['cloud'],
     featured: false,
-    stack: ['Kinesis Video Streams', 'SageMaker', 'Lambda', 'DynamoDB', 'Aurora', 'ElastiCache', 'Cognito', 'WAF', 'CloudFront', 'Route 53', 'Glue', 'EventBridge', 'CodePipeline', 'Secrets Manager'],
+    stack: [
+      'Kinesis Video Streams',
+      'SageMaker',
+      'Lambda',
+      'DynamoDB',
+      'Aurora',
+      'ElastiCache',
+      'Cognito',
+      'WAF',
+      'CloudFront',
+      'Route 53',
+      'Glue',
+      'EventBridge',
+      'CodePipeline',
+      'Secrets Manager',
+    ],
     links: [],
     summary:
       'A design for 1M+ concurrent users covering scalability, GDPR/PCI-DSS security, 99.9% availability, global performance and cost.',
@@ -510,18 +674,21 @@ export const projects = [
     decisions: [
       {
         title: 'Serverless by default',
-        detail: 'Lambda and on-demand DynamoDB scale to zero between peaks, keeping cost proportional to use.',
+        detail:
+          'Lambda and on-demand DynamoDB scale to zero between peaks, keeping cost proportional to use.',
       },
       {
         title: 'Isolate the blast radius',
-        detail: 'Payments and user management each sit in dedicated private subnets with least-privilege IAM.',
+        detail:
+          'Payments and user management each sit in dedicated private subnets with least-privilege IAM.',
       },
     ],
   },
   {
     slug: 'equipment-data-warehouse',
     title: 'Equipment sales & hire data warehouse',
-    tagline: 'Cleaning messy operational data and modelling a star schema that answers what sells, where and when.',
+    tagline:
+      'Cleaning messy operational data and modelling a star schema that answers what sells, where and when.',
     year: '2025',
     context: 'Monash · FIT5137 Advanced Database Technology',
     team: 'Solo',
@@ -542,14 +709,16 @@ export const projects = [
     decisions: [
       {
         title: 'Recommendations, not just charts',
-        detail: 'Each finding ends in an action, for example treating sales as the growth engine and growing hire through pricing and utilisation.',
+        detail:
+          'Each finding ends in an action, for example treating sales as the growth engine and growing hire through pricing and utilisation.',
       },
     ],
   },
   {
     slug: 'ptv-bus-accessibility',
     title: 'Bus access to Melbourne’s parks and waterways',
-    tagline: 'Spatial SQL analysis of how well Public Transport Victoria’s bus network reaches green and blue spaces.',
+    tagline:
+      'Spatial SQL analysis of how well Public Transport Victoria’s bus network reaches green and blue spaces.',
     year: '2025',
     context: 'Monash · FIT5137 Advanced Database Technology',
     team: 'Solo',
@@ -578,7 +747,8 @@ export const projects = [
   {
     slug: 'getfit-victoria',
     title: 'GetFit Victoria',
-    tagline: 'A community sports finder with authentication, role-guarded admin tools and event ratings.',
+    tagline:
+      'A community sports finder with authentication, role-guarded admin tools and event ratings.',
     year: '2025',
     context: 'Monash · FIT5032 Internet Applications Development',
     team: 'Solo',
@@ -589,7 +759,8 @@ export const projects = [
     links: [],
     summary:
       'A Vue 3 + Firebase web app for finding local sports activities, with guarded routes and one rating per member per event.',
-    problem: 'People new to an area struggle to find casual, affordable sport. Clubs struggle to reach them.',
+    problem:
+      'People new to an area struggle to find casual, affordable sport. Clubs struggle to reach them.',
     built: [
       'Firebase Authentication sign-up and login with client-side validation and input sanitisation.',
       'Route guards for member-only pages and an admin-only dashboard.',
@@ -600,7 +771,8 @@ export const projects = [
   {
     slug: 'afl-simulation',
     title: 'AFL match simulator',
-    tagline: 'An object-oriented Java simulation of an Australian Rules Football match, from team files to final score.',
+    tagline:
+      'An object-oriented Java simulation of an Australian Rules Football match, from team files to final score.',
     year: '2024',
     context: 'Monash · FIT9131 Programming Foundations in Java',
     team: 'Solo',
@@ -611,7 +783,8 @@ export const projects = [
     links: [],
     summary:
       'Class hierarchy of player positions, probabilistic play-by-play simulation, file-based team rosters and a documented test strategy.',
-    problem: 'Model a real sport’s rules and randomness cleanly enough that the code stays readable, testable and easy to extend.',
+    problem:
+      'Model a real sport’s rules and randomness cleanly enough that the code stays readable, testable and easy to extend.',
     built: [
       'An abstract Player with Forward, Midfielder, Defender and Reserve subclasses, each with position-specific behaviour (polymorphism in practice).',
       'Team management that reads rosters from files and writes updated player stats back after the match.',

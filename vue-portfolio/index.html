@@ -1,13 +1,63 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vue-portfolio</title>
+    <title>Sebastian Parakal Jose | Software Engineer</title>
+    <meta
+      name="description"
+      content="Software engineer in Melbourne: backend, cloud and mobile. Launched the IFRC World Disasters Report platform to 30,000+ users; ex-NCR payments engineer; Monash MIT, GPA 4.0."
+    />
+    <meta name="author" content="Sebastian Parakal Jose" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sebastian Parakal Jose | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Backend, cloud and mobile engineer in Melbourne. Case studies: IFRC World Disasters Report, Hush, CloudPose, BirdTag and more."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sebastian Parakal Jose",
+        "jobTitle": "Software Engineer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Melbourne",
+          "addressCountry": "AU"
+        },
+        "alumniOf": ["Monash University", "National Institute of Technology Calicut"],
+        "sameAs": [
+          "https://github.com/sebastian2222",
+          "https://www.linkedin.com/in/sebastian-jose-720256187/"
+        ]
+      }
+    </script>
+
+    <!-- Apply the saved theme before first paint to avoid a flash. -->
+    <script>
+      try {
+        const t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+      } catch {}
+    </script>
   </head>
   <body>
     <div id="app"></div>
+    <noscript>
+      This portfolio needs JavaScript. You can still reach Sebastian at
+      <a href="mailto:sebastianparakal@gmail.com">sebastianparakal@gmail.com</a>.
+    </noscript>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

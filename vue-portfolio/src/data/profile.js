@@ -5,7 +5,7 @@ export const profile = {
   shortName: 'Sebastian',
   initials: 'SPJ',
   role: 'Software Engineer',
-  focus: ['Backend systems', 'Cloud infrastructure', 'Mobile'],
+  focus: ['Backend', 'Cloud', 'Mobile'],
   location: 'Melbourne, Australia',
   workRights: 'Unlimited work rights in Australia',
   availability: 'Open to full-time software engineering roles',
