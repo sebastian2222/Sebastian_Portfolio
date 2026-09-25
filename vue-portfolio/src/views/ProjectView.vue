@@ -34,6 +34,7 @@ const headerLinks = computed(() =>
         <p class="mono hero__context">{{ project.context }}</p>
         <h1 class="hero__title">{{ project.title }}</h1>
         <p class="hero__tagline">{{ project.tagline }}</p>
+        <p v-if="project.course" class="mono hero__course">Built at: {{ project.course }}</p>
 
         <ul class="hero__stickers">
           <li class="sticker tone-yellow">{{ project.year }}</li>
@@ -227,6 +228,13 @@ const headerLinks = computed(() =>
   max-width: 60ch;
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   font-weight: 500;
+}
+
+.hero__course {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.85;
 }
 
 .hero__stickers {

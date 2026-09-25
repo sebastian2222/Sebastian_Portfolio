@@ -11,6 +11,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Replace the self-hosted CloudPose demo with a YouTube/Vimeo embed if bandwidth becomes a concern.
 - Add screenshots for the Hush and PantryPals case studies.
 
+## [1.2.1] - 2026-09-25
+
+### Changed
+
+- Project cards and case-study headers now show what kind of project each one is (for example "Cloud-native ML inference service" or "Serverless AI media platform") instead of unit codes.
+- The unit, employer or personal-project origin moved to a new `course` field, shown as a "Built at" line on each case study.
+- Generic titles now use the real project names from the briefs: **MATE: AI fitness platform on AWS**, **Monash Equipment Center data warehouse** and **PTV green-space accessibility analysis**. URLs and slugs are unchanged.
+
 ## [1.2.0] - 2026-09-25
 
 ### Changed

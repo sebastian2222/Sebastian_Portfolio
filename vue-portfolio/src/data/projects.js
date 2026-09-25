@@ -3,7 +3,10 @@
  * as a full page at /projects/:slug.
  *
  * Shape:
- *   slug, title, tagline, year, context, team ('Solo' | 'Team of N' | 'Team'),
+ *   slug, title, tagline, year,
+ *   context (what kind of project it is, shown on cards),
+ *   course (where it was built: unit, employer or "Personal project"),
+ *   team ('Solo' | 'Team of N' | 'Team'),
  *   role, categories[], featured, stack[], links[{ label, href, kind }],
  *   media?: { video, poster }, summary, problem, built[], architecture?:
  *   { lanes: [{ name, steps[] }], caption }, decisions[{ title, detail }],
@@ -30,7 +33,8 @@ export const projects = [
     tagline:
       'The digital home of the IFRC’s flagship report, launched in Geneva to 30,000+ users on day one.',
     year: '2026',
-    context: 'MOSAIC × International Federation of Red Cross and Red Crescent Societies',
+    context: 'Global humanitarian report platform',
+    course: 'MOSAIC × IFRC',
     team: 'Team',
     role: 'CTO & engineer',
     categories: ['fullstack', 'cloud'],
@@ -123,7 +127,8 @@ export const projects = [
     tagline:
       'Sensory-friendly navigation for Melbourne’s CBD: live crowd density and the quietest route, not just the fastest.',
     year: '2026',
-    context: 'Monash Industry Experience capstone (team TE22) · City of Melbourne open data',
+    context: 'Accessible smart-city navigation',
+    course: 'Monash Industry Experience capstone · City of Melbourne open data',
     team: 'Team · sole engineer',
     role: 'Sole software engineer (end to end)',
     categories: ['cloud', 'fullstack', 'ai'],
@@ -227,7 +232,8 @@ export const projects = [
     tagline:
       'Four Claude Code harnesses that mark code, reports, slide decks and requirements documents against a rubric, where every mark must cite evidence and be independently checked.',
     year: '2026',
-    context: 'Monash University · Teaching Associate, FIT5046 & FIT1056',
+    context: 'Agentic AI tooling',
+    course: 'Monash University · Teaching Associate (FIT5046, FIT1056)',
     team: 'Solo',
     role: 'Designer & builder',
     categories: ['ai', 'backend'],
@@ -333,7 +339,8 @@ export const projects = [
     tagline:
       'Human pose estimation as a web service, containerised and load-tested on Kubernetes under tight CPU and memory limits.',
     year: '2025',
-    context: 'Monash · FIT5225 Cloud Computing & Security',
+    context: 'Cloud-native ML inference service',
+    course: 'Monash University · FIT5225 Cloud Computing & Security',
     team: 'Solo',
     role: 'Engineer',
     categories: ['cloud', 'backend', 'ai'],
@@ -422,7 +429,8 @@ export const projects = [
     tagline:
       'A self-hosted tech-trend radar that streams GitHub and Hacker News activity through Kafka to score what’s trending in CS.',
     year: '2026',
-    context: 'Personal project',
+    context: 'Real-time streaming data platform',
+    course: 'Personal project',
     team: 'Solo',
     role: 'Engineer',
     categories: ['backend', 'cloud', 'data'],
@@ -525,7 +533,8 @@ export const projects = [
     tagline:
       'A serverless media library that automatically tags bird species in uploaded photos, videos and audio.',
     year: '2025',
-    context: 'Monash · FIT5225 Cloud Computing & Security',
+    context: 'Serverless AI media platform',
+    course: 'Monash University · FIT5225 Cloud Computing & Security',
     team: 'Team of 4',
     role: 'Backend engineer',
     categories: ['cloud', 'backend', 'ai'],
@@ -602,7 +611,8 @@ export const projects = [
     tagline:
       'An Android app that cuts household food waste with barcode and expiry-date scanning, shared pantries and smart reminders.',
     year: '2025',
-    context: 'Monash · FIT5046 Mobile & Distributed Computing Systems',
+    context: 'Context-aware Android app',
+    course: 'Monash University · FIT5046 Mobile & Distributed Computing',
     team: 'Team',
     role: 'Android engineer',
     categories: ['mobile'],
@@ -665,7 +675,8 @@ export const projects = [
     tagline:
       'A multitasking OS kernel written from scratch for a simulated machine: scheduler, virtual memory, file system and system calls.',
     year: '2021',
-    context: 'NIT Calicut · B.Tech CSE · eXpOS project',
+    context: 'Operating system kernel',
+    course: 'NIT Calicut · B.Tech CSE (eXpOS)',
     team: 'Solo',
     role: 'Kernel developer',
     categories: ['systems'],
@@ -717,11 +728,12 @@ export const projects = [
   },
   {
     slug: 'mate-aws-architecture',
-    title: 'Cloud architecture for AI fitness coaching',
+    title: 'MATE: AI fitness platform on AWS',
     tagline:
       'An AWS architecture for real-time video pose analysis, global competitions and payments at the scale of a million users.',
     year: '2025',
-    context: 'Monash · FIT5225 Cloud Computing & Security',
+    context: 'Cloud solution architecture',
+    course: 'Monash University · FIT5225 Cloud Computing & Security',
     team: 'Solo',
     role: 'Solutions architect',
     categories: ['cloud'],
@@ -768,11 +780,12 @@ export const projects = [
   },
   {
     slug: 'equipment-data-warehouse',
-    title: 'Equipment sales & hire data warehouse',
+    title: 'Monash Equipment Center data warehouse',
     tagline:
       'Cleaning messy operational data and modelling a star schema that answers what sells, where and when.',
     year: '2025',
-    context: 'Monash · FIT5137 Advanced Database Technology',
+    context: 'Data warehousing & BI',
+    course: 'Monash University · FIT5137 Advanced Database Technology',
     team: 'Solo',
     role: 'Data engineer / analyst',
     categories: ['data'],
@@ -798,11 +811,12 @@ export const projects = [
   },
   {
     slug: 'ptv-bus-accessibility',
-    title: 'Bus access to Melbourne’s parks and waterways',
+    title: 'PTV green-space accessibility analysis',
     tagline:
       'Spatial SQL analysis of how well Public Transport Victoria’s bus network reaches green and blue spaces.',
     year: '2025',
-    context: 'Monash · FIT5137 Advanced Database Technology',
+    context: 'Geospatial transport analysis',
+    course: 'Monash University · FIT5137 Advanced Database Technology',
     team: 'Solo',
     role: 'Spatial data analyst',
     categories: ['data'],
@@ -832,7 +846,8 @@ export const projects = [
     tagline:
       'A community sports finder with authentication, role-guarded admin tools and event ratings.',
     year: '2025',
-    context: 'Monash · FIT5032 Internet Applications Development',
+    context: 'Community sports web app',
+    course: 'Monash University · FIT5032 Internet Applications Development',
     team: 'Solo',
     role: 'Full-stack developer',
     categories: ['fullstack'],
@@ -856,7 +871,8 @@ export const projects = [
     tagline:
       'An object-oriented Java simulation of an Australian Rules Football match, from team files to final score.',
     year: '2024',
-    context: 'Monash · FIT9131 Programming Foundations in Java',
+    context: 'Object-oriented game simulation',
+    course: 'Monash University · FIT9131 Programming Foundations in Java',
     team: 'Solo',
     role: 'Developer',
     categories: ['systems'],
