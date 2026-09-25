@@ -9,7 +9,22 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 - Add a public repository link for SignalStack once it is published.
 - Replace the self-hosted CloudPose demo with a YouTube/Vimeo embed if bandwidth becomes a concern.
-- Add screenshots for Hush and PantryPals case studies.
+- Add screenshots for the Hush and PantryPals case studies.
+
+## [1.1.0] - 2026-09-25
+
+### Changed
+
+- **Hush**: now credited as sole software engineer, covering frontend, Lambdas, routing, the ML pipeline, Terraform-managed AWS infrastructure and CI/CD. Terraform and Dependabot added to the stack.
+- **Marking harness → Agentic marking harnesses**: rewritten from the harness sources. It now covers four harnesses across FIT5046 (A1, A2, A4) and FIT1056 (Deliverable 1), including the verifier and uniqueness agents, bibliography verification against Semantic Scholar/OpenAlex, horizontal marking, versioned rubric iterations and validation gates.
+- **SignalStack**: rewritten from the source code. Covers topic extraction, Redis dedup, batched at-least-once consumption, cache-aside API, cross-container Prometheus metrics, Grafana dashboards, Trivy scanning and architecture decision records. Promoted to a featured project.
+- **eXpOS kernel** promoted to featured (8 featured projects keeps the grid balanced).
+- Teaching Associate experience updated to describe all four harnesses.
+
+### Security
+
+- Proprietary NCR source code was deliberately not read or used. The NCR role is described from the resume only.
+- Harness material was extracted without student submissions, feedback or marks data.
 
 ## [1.0.0] - 2026-09-25
 
