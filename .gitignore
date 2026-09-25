@@ -1,0 +1,20 @@
+# Dependencies & build output (any depth)
+node_modules/
+dist/
+coverage/
+
+# Raw source material used to author the portfolio content.
+# Contains coursework archives, third-party/corporate repos and
+# credentials (e.g. .pem keys, .env files) — never commit it.
+materials/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
