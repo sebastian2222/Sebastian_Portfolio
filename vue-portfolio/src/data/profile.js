@@ -7,15 +7,15 @@ export const profile = {
   role: 'Software Engineer',
   focus: ['Backend', 'Cloud', 'Mobile'],
   location: 'Melbourne, Australia',
-  workRights: 'Unlimited work rights in Australia',
-  availability: 'Open to full-time software engineering roles',
-  headline: 'I build dependable backends, cloud systems and products that real people use.',
+  workRights: 'Full Australian work rights',
+  availability: 'Open to full-time SWE roles',
+  headline: 'I build backends, cloud systems & apps people actually use.',
   intro:
-    'Two years shipping C++ payment services at NCR, then a Master of IT at Monash with a 4.0 GPA. ' +
-    'Today I lead engineering at MOSAIC, where our team launched the IFRC World Disasters Report ' +
-    'platform to 30,000+ users on day one, and I teach Android development to 100+ students.',
+    'Two years shipping C++ services for a payment processor at NCR, then a Master of IT at Monash ' +
+    'with a 4.0 GPA. As CTO of MOSAIC I led the launch of the IFRC World Disasters Report platform ' +
+    'to 30,000+ people on day one, and today I teach 100+ students across three Monash units.',
   about: [
-    'I started my career on the L4 escalation team for a payment switch that routes Mastercard and ' +
+    'I started my career on the L4 escalation team for a payment processor handling Mastercard and ' +
       'American Express traffic. That is where I learnt to respect production: read the logs first, ' +
       'reproduce before you patch, and leave a system more observable than you found it.',
     'At Monash I have gone broad on cloud, serverless and mobile, and deep where it counts: load-testing ' +
@@ -31,10 +31,65 @@ export const profile = {
     github: 'https://github.com/sebastian2222',
     linkedin: 'https://www.linkedin.com/in/sebastian-jose-720256187/',
   },
+  // Sticker stats under the hero. `tone` maps to a palette colour in tokens.css.
   stats: [
-    { value: '30k+', label: 'users on launch day for wdr26.org' },
-    { value: '2 yrs', label: 'C++ payments engineering at NCR' },
-    { value: '4.0', label: 'GPA, Master of IT at Monash' },
-    { value: '100+', label: 'students mentored in Android' },
+    {
+      kicker: 'IFRC WDR platform',
+      value: '30k+ users',
+      label: 'on launch day in Geneva',
+      tone: 'yellow',
+    },
+    { kicker: 'NCR', value: '2 yrs C++', label: 'payment processor engineering', tone: 'navy' },
+    {
+      kicker: 'Monash University',
+      value: '4.0 GPA',
+      label: 'Master of Information Technology',
+      tone: 'mint',
+    },
+    {
+      kicker: 'Teaching Associate',
+      value: '100+ students',
+      label: 'across three Monash units',
+      tone: 'pink',
+    },
+  ],
+  // "My journey" route map, oldest first.
+  journey: [
+    {
+      tag: 'Origin',
+      years: '2018–22',
+      place: 'Calicut, India',
+      title: 'NIT Calicut',
+      subtitle: 'B.Tech, Computer Science',
+      text: 'Where I fell for systems programming and wrote an operating system kernel from scratch.',
+      tone: 'mint',
+    },
+    {
+      tag: 'Industry',
+      years: '2022–24',
+      place: 'Hyderabad, India',
+      title: 'NCR / Global Payments',
+      subtitle: 'C++ software engineer',
+      text: 'Payment processor services for Mastercard & Amex, ISO 8583 pipelines, automation and L4 escalations.',
+      tone: 'pink',
+    },
+    {
+      tag: 'Study',
+      years: '2024–26',
+      place: 'Melbourne, Australia',
+      title: 'Monash University',
+      subtitle: 'Master of IT · GPA 4.0',
+      text: 'Cloud, distributed and mobile systems. Led MOSAIC as CTO (Jan–Jul 2026) through the IFRC launch.',
+      tone: 'yellow',
+    },
+    {
+      tag: 'Now',
+      years: 'Present',
+      place: 'Melbourne, Australia',
+      title: 'Teaching & building',
+      subtitle: 'Teaching Associate · Monash',
+      text: 'Teaching FIT5046, FIT5032 and FIT1056, building agentic tooling, and looking for my next full-time role.',
+      tone: 'navy',
+    },
   ],
 }
