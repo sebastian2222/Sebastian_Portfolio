@@ -20,6 +20,7 @@ import mateArchitecture from '@/assets/images/figures/mate-architecture.webp'
 import birdtagArchitecture from '@/assets/images/figures/birdtag-architecture.webp'
 import warehouseStarSchema from '@/assets/images/figures/warehouse-star-schema.webp'
 import ptvHeatmap from '@/assets/images/figures/ptv-heatmap.webp'
+import hushArchitecture from '@/assets/images/figures/hush-architecture.webp'
 
 export const categories = [
   { id: 'all', label: 'All' },
@@ -135,6 +136,16 @@ export const projects = [
     context: 'Accessible smart-city navigation',
     course: 'Monash Industry Experience capstone · City of Melbourne open data',
     role: 'Sole software engineer (end to end)',
+    figures: [
+      {
+        src: hushArchitecture,
+        width: 2400,
+        height: 1566,
+        alt: 'Hush AWS architecture, colour-coded by iteration: a Vue frontend on Amplify calls API Gateway, which fronts Lambdas for GeoJSON, quiet spaces, landmarks, cafés, quiet-route finding and forecast fetches backed by RDS; EventBridge schedules drive the noise-sensor loader, pedestrian-count ingestion and an hourly ECR-packaged crowd-density forecast Lambda that writes to an S3 forecast bucket, which auto-triggers a formatter Lambda; external APIs are Google Places, City of Melbourne open data, Cloudinary and Google Maps.',
+        caption:
+          'The system architecture I designed, coloured by iteration: live pedestrian data and quiet spaces first, then cafés, noise sensors, crowd forecasting and quiet routes, then landmarks and waypoint navigation.',
+      },
+    ],
     categories: ['cloud', 'fullstack', 'ai'],
     featured: true,
     stack: [
