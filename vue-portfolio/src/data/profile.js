@@ -26,6 +26,8 @@ export const profile = {
   ],
   portrait,
   resume: 'files/Sebastian_Parakal_Jose_Resume.pdf',
+  // Google Analytics 4 measurement ID (public by design; it ships in the page source).
+  analyticsId: 'G-SQDK7WSWWF',
   email: 'sebastianparakal@gmail.com',
   links: {
     github: 'https://github.com/sebastian2222',
