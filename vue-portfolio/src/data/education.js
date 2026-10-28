@@ -5,8 +5,8 @@ export const education = [
     degree: 'Master of Information Technology',
     location: 'Melbourne, Australia',
     start: '2024-07',
-    end: '2026-06',
-    result: 'GPA 4.0 / 4.0 · WAM 86',
+    end: '2026-09',
+    result: 'GPA 4.0 / 4.0 · WAM 84.867',
     details: [
       'High Distinctions in Cloud Computing & Security, Mobile & Distributed Computing Systems, Advanced Database Technology, Internet Applications Development, Software Engineering, Project Management and Foundations of Data Science.',
     ],

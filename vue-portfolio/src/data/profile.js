@@ -11,7 +11,7 @@ export const profile = {
   availability: 'Open to full-time SWE roles',
   headline: 'I build backends, cloud systems & apps people actually use.',
   intro:
-    '2+ years of production impact on a payment processor at NCR, then a Master of IT at Monash ' +
+    '3+ years of production impact on a payment processor at NCR, then a Master of IT at Monash ' +
     'with a 4.0 GPA. As CTO of MOSAIC I led the launch of the IFRC World Disasters Report platform ' +
     'to 30,000+ people on day one, and today I teach 100+ students across three Monash units.',
   about: [
@@ -41,7 +41,7 @@ export const profile = {
     },
     {
       kicker: 'NCR / Global Payments',
-      value: '2+ years',
+      value: '3+ years',
       label: 'of production impact',
       tone: 'navy',
     },
@@ -75,7 +75,7 @@ export const profile = {
       place: 'Hyderabad, India',
       title: 'NCR / Global Payments',
       subtitle: 'Software engineer',
-      text: 'Payment processor services for Mastercard & Amex, ISO 8583 pipelines, C# .NET automation and L4 escalations.',
+      text: 'Payment processor services for Mastercard & Amex in C++, Java, Node.js, PHP and Go, ISO 8583 pipelines, .NET automation and L4 escalations.',
       tone: 'pink',
     },
     {
@@ -84,7 +84,7 @@ export const profile = {
       place: 'Melbourne, Australia',
       title: 'Monash University',
       subtitle: 'Master of IT · GPA 4.0',
-      text: 'Cloud, distributed and mobile systems. Led MOSAIC as CTO (Jan–Jul 2026) through the IFRC launch.',
+      text: 'Cloud, distributed and mobile systems. Led MOSAIC as CTO (Jan–Aug 2026) through the IFRC launch.',
       tone: 'yellow',
     },
     {
