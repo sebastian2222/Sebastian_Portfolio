@@ -11,5 +11,5 @@ import router from './router'
 import { reveal } from './directives/reveal'
 import { initAnalytics } from './utils/analytics'
 
-initAnalytics()
+initAnalytics(undefined, undefined, router)
 createApp(App).use(router).directive('reveal', reveal).mount('#app')

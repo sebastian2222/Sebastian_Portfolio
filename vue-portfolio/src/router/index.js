@@ -38,7 +38,9 @@ const router = createRouter({
   },
 })
 
-router.afterEach((to) => {
+// beforeResolve runs just before the URL changes, so analytics page views
+// (sent on the history change) pick up the new page's title.
+router.beforeResolve((to) => {
   const project = to.name === 'project' ? getProject(to.params.slug) : null
   document.title = project ? `${project.title} | ${profile.name}` : (to.meta.title ?? profile.name)
 })
