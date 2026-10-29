@@ -9,7 +9,15 @@ import './styles/base.css'
 import App from './App.vue'
 import router from './router'
 import { reveal } from './directives/reveal'
-import { initAnalytics } from './utils/analytics'
+import { followRedirect, initAnalytics, redirectTarget } from './utils/analytics'
 
-initAnalytics(undefined, undefined, router)
-createApp(App).use(router).directive('reveal', reveal).mount('#app')
+// /go/<link> pages (used by resume PDFs) record the click and forward on
+// without rendering the site.
+const redirect = redirectTarget(window.location.pathname)
+if (redirect) {
+  initAnalytics()
+  followRedirect(redirect)
+} else {
+  initAnalytics(undefined, undefined, router)
+  createApp(App).use(router).directive('reveal', reveal).mount('#app')
+}

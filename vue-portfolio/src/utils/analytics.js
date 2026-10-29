@@ -35,6 +35,42 @@ export function initAnalytics(
   return true
 }
 
+/**
+ * Tracked redirects for links printed in resumes and cover letters, e.g.
+ * /go/github?utm_campaign=sportsbet. A PDF can't report clicks on github.com,
+ * so the PDF links here instead: the page view carries the UTM tags, we send
+ * profile_link_click { link }, then forward to the real profile.
+ */
+export const REDIRECTS = {
+  github: profile.links.github,
+  linkedin: profile.links.linkedin,
+}
+
+export function redirectTarget(pathname = '') {
+  const match = pathname.match(/\/go\/([a-z]+)\/?$/)
+  return match && REDIRECTS[match[1]] ? { link: match[1], url: REDIRECTS[match[1]] } : null
+}
+
+export function followRedirect({ link, url }, navigate = (to) => window.location.replace(to)) {
+  let done = false
+  const go = () => {
+    if (!done) {
+      done = true
+      navigate(url)
+    }
+  }
+  if (window.gtag) {
+    window.gtag('event', 'profile_link_click', {
+      link,
+      transport_type: 'beacon',
+      event_callback: go,
+    })
+    setTimeout(go, 1500)
+  } else {
+    go()
+  }
+}
+
 /** Maps a clicked link to a custom event, or null if it isn't one we track. */
 export function classifyLink(href = '') {
   if (href.startsWith('mailto:')) return ['contact_click', { method: 'email' }]

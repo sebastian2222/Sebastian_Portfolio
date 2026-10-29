@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { classifyLink, initAnalytics } from '../analytics'
+import { classifyLink, followRedirect, initAnalytics, redirectTarget } from '../analytics'
+import { profile } from '@/data/profile'
 
 const gaScripts = () => document.head.querySelectorAll('script[src*="googletagmanager.com"]')
 const sentEvents = () =>
@@ -55,5 +56,35 @@ describe('classifyLink', () => {
   it('ignores ordinary links', () => {
     expect(classifyLink('/projects/hush')).toBeNull()
     expect(classifyLink('https://hushapp.live')).toBeNull()
+  })
+})
+
+describe('tracked redirects', () => {
+  it('resolves /go/<link> paths to profile URLs', () => {
+    expect(redirectTarget('/go/github')).toEqual({ link: 'github', url: profile.links.github })
+    expect(redirectTarget('/go/linkedin/')).toEqual({
+      link: 'linkedin',
+      url: profile.links.linkedin,
+    })
+    expect(redirectTarget('/go/unknown')).toBeNull()
+    expect(redirectTarget('/projects/hush')).toBeNull()
+  })
+
+  it('records profile_link_click and forwards once', () => {
+    initAnalytics('G-TEST123', true)
+    const visited = []
+    followRedirect({ link: 'github', url: 'https://github.com/x' }, (to) => visited.push(to))
+    const [, name, params] = window.dataLayer.find((args) => args[1] === 'profile_link_click')
+    expect(name).toBe('profile_link_click')
+    expect(params.link).toBe('github')
+    params.event_callback()
+    params.event_callback()
+    expect(visited).toEqual(['https://github.com/x'])
+  })
+
+  it('forwards straight away when analytics is off', () => {
+    const visited = []
+    followRedirect({ link: 'linkedin', url: 'https://linkedin.com/x' }, (to) => visited.push(to))
+    expect(visited).toEqual(['https://linkedin.com/x'])
   })
 })
