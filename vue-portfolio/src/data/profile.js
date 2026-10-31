@@ -77,7 +77,7 @@ export const profile = {
       place: 'Hyderabad, India',
       title: 'NCR / Global Payments',
       subtitle: 'Software engineer',
-      text: 'Payment processor services for Mastercard & Amex in C++, Java, Node.js, PHP and Go, ISO 8583 pipelines, .NET automation and L4 escalations.',
+      text: 'Payment processor services for Mastercard & Amex in Java, C++, Node.js, Python and Go, ISO 8583 pipelines, .NET automation and L4 escalations.',
       tone: 'pink',
     },
     {

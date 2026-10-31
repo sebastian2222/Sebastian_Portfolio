@@ -14,7 +14,7 @@ export const experience = [
       'Teach FIT5046 Mobile & Distributed Computing Systems, FIT5032 Internet Applications Development and FIT1056 Introduction to Software Engineering.',
     highlights: [
       'Mentor 100+ students across Android (Jetpack Compose, MVVM, REST APIs), web applications and software engineering fundamentals.',
-      'Built four Claude Code marking harnesses across FIT5046 and FIT1056 (Android code, reports, slide decks and SRS documents), from a five-agent pipeline with an independent verifier to Python tools that verify references against Semantic Scholar/OpenAlex and validate marks before release.',
+      'Built four Claude Code marking harnesses across two units (Android code, reports, slide decks and SRS documents), from a five-agent pipeline with an independent verifier to Python tools that verify references against Semantic Scholar/OpenAlex and validate marks before release.',
       'Rated 91% for student satisfaction (SETU) through structured mentoring and technical support.',
     ],
     stack: [
@@ -141,12 +141,12 @@ export const experience = [
     start: '2022-07',
     end: '2024-07',
     summary:
-      'Built and supported mission-critical services in a payment processor handling card traffic for global networks, working across teams and products in C++, Java, Node.js, PHP, Go and .NET.',
+      'Built and supported mission-critical services in a payment processor handling card traffic for global networks, working across teams and products in Java, C++, Node.js, TypeScript, Python, Go and .NET.',
     highlights: [
-      'Engineered C++ backend services for the payment processor, handling Mastercard and American Express transactions across ATM, payment-switch and card-payment flows.',
-      'Built services and REST APIs across multiple teams and products in Java (Spring Boot), Node.js (Express, NestJS, TypeScript) and PHP (Laravel).',
+      'Engineered mission-critical Java and C++ backend systems for the payment processor, handling Mastercard and American Express transactions across ATM, payment-switch and card-payment flows.',
+      'Built services and REST APIs across multiple teams and products in Node.js (NestJS), TypeScript and Python.',
       'Implemented and extended ISO 8583 messaging pipelines that route high-volume transactions between card networks, acquirers and issuing banks.',
-      'Built a .NET 6 automation framework (SpecFlow, MSTest) for EMV transaction flows with Jira integration, containerised with Docker on Oracle Linux and run in GitHub Actions and Jenkins.',
+      'Upgraded and migrated the EMV test automation framework to .NET 6 (SpecFlow, MSTest), covering contact, contactless and other transaction types across multiple environments on Azure, with Jira integration, Docker on Oracle Linux, and GitHub Actions and Jenkins pipelines.',
       'Rewrote legacy Perl scripts as maintainable Go tools, and built .NET utilities for encryption and DUKPT key management.',
       'On the L4 escalation team, root-caused the hardest production incidents and shipped hotfixes under live constraints, improving system reliability by 20%.',
       'Built Splunk dashboards and queries for pipeline observability, cutting mean time to detect anomalies by 30%.',
@@ -160,8 +160,7 @@ export const experience = [
       'Express',
       'NestJS',
       'TypeScript',
-      'PHP',
-      'Laravel',
+      'Python',
       'Go',
       'Perl',
       'C#',
@@ -176,6 +175,7 @@ export const experience = [
       'Docker',
       'GitHub Actions',
       'Jenkins',
+      'Azure',
       'Jira',
       'Bash',
       'Linux',

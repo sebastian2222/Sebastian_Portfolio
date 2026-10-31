@@ -265,7 +265,7 @@ export const projects = [
       'Four Claude Code harnesses that mark code, reports, slide decks and requirements documents against a rubric, where every mark must cite evidence and be independently checked.',
     year: '2026',
     context: 'Agentic AI tooling',
-    course: 'Monash University · Teaching Associate (FIT5046, FIT1056)',
+    course: 'Monash University · Teaching Associate',
     role: 'Designer & builder',
     categories: ['ai', 'backend'],
     featured: true,
@@ -286,16 +286,16 @@ export const projects = [
     problem:
       'A tutor marking dozens of group submissions has to cross-check codebases, reports, slide decks and a detailed rubric, and keep marks consistent across the whole cohort. Doing that by hand is slow and drifts over time. A single LLM prompt is fast, but it makes confident claims it can’t back up.',
     built: [
-      'Android group projects (FIT5046 A4): an orchestrator that hands each submission to five sub-agents (code-inspector, report-auditor, rubric-scorer, uniqueness-checker and verifier) and writes a mark sheet, a feedback CSV and a trace log.',
-      'Research-paper presentations (FIT5046 A1): a stdlib-only PPTX extractor, per-slide word-count audits, and reference checks that pull each paper’s real bibliography from Semantic Scholar with an OpenAlex fallback, so overlap is verified rather than suspected.',
-      'Design-proposal reports (FIT5046 A2): PDF/DOCX extraction, automatic location of the rubric’s sections, and page rendering when tables are embedded as images.',
-      'Software requirements specifications (FIT1056): extraction to text and page images, a JSON “source of truth” per team, generated LaTeX/Markdown feedback, and a check.py gate that validates ranges, arithmetic and penalties before release.',
+      'Android group projects: an orchestrator that hands each submission to five sub-agents (code-inspector, report-auditor, rubric-scorer, uniqueness-checker and verifier) and writes a mark sheet, a feedback CSV and a trace log.',
+      'Research-paper presentations: a stdlib-only PPTX extractor, per-slide word-count audits, and reference checks that pull each paper’s real bibliography from Semantic Scholar with an OpenAlex fallback, so overlap is verified rather than suspected.',
+      'Design-proposal reports: PDF/DOCX extraction, automatic location of the rubric’s sections, and page rendering when tables are embedded as images.',
+      'Software requirements specifications: extraction to text and page images, a JSON “source of truth” per team, generated LaTeX/Markdown feedback, and a check.py gate that validates ranges, arithmetic and penalties before release.',
       'Spreadsheet writers that back up the workbook before every write and never touch cells tutors own, such as individual marks, formulas and deductions.',
     ],
     architecture: {
       lanes: [
         {
-          name: 'A4 agents',
+          name: 'Group-project agents',
           steps: [
             'Submission',
             'code-inspector',
