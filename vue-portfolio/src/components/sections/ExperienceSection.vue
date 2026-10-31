@@ -1,13 +1,36 @@
 <script setup>
+import { reactive } from 'vue'
 import AppIcon from '@/components/AppIcon.vue'
 import SectionHeading from '@/components/SectionHeading.vue'
 import { experience } from '@/data/experience'
 import { getProject } from '@/data/projects'
 import { formatPeriod } from '@/utils/format'
+import { track } from '@/utils/analytics'
 
 // Tab colour per card, in order.
 const TABS = ['yellow', 'mint', 'tomato']
 const CHIP_TONES = ['mint', 'yellow', 'cobalt', 'lilac', 'pink', 'tomato']
+
+// Progressive disclosure: the strongest highlights and tools show first.
+// Hidden items stay in the DOM (v-show) so search and Ctrl+F still find them.
+const VISIBLE_HIGHLIGHTS = 3
+const VISIBLE_CHIPS = 8
+
+const expanded = reactive({})
+const hiddenHighlights = (job) => Math.max(0, job.highlights.length - VISIBLE_HIGHLIGHTS)
+const hasMore = (job) => hiddenHighlights(job) > 0 || job.stack.length > VISIBLE_CHIPS
+
+function toggleLabel(job) {
+  if (expanded[job.id]) return 'Show less'
+  const n = hiddenHighlights(job)
+  if (!n) return 'Show all tools'
+  return `Show ${n} more ${n === 1 ? 'highlight' : 'highlights'}`
+}
+
+function toggle(job) {
+  expanded[job.id] = !expanded[job.id]
+  if (expanded[job.id]) track('experience_expand', { job_id: job.id })
+}
 </script>
 
 <template>
@@ -23,9 +46,26 @@ const CHIP_TONES = ['mint', 'yellow', 'cobalt', 'lilac', 'pink', 'tomato']
         lead="Index cards pulled straight from my engineering logbook."
       />
 
+      <nav class="jump" aria-label="Jump to a role">
+        <ol class="jump__list">
+          <li v-for="(job, i) in experience" :key="job.id">
+            <RouterLink
+              :to="{ name: 'home', hash: `#job-${job.id}` }"
+              class="jump__item"
+              :class="`tone-${TABS[i % TABS.length]}`"
+            >
+              <span class="jump__role">{{ job.role }}</span>
+              <span class="jump__org">{{ job.org }}</span>
+              <span class="jump__dates mono">{{ formatPeriod(job.start, job.end) }}</span>
+            </RouterLink>
+          </li>
+        </ol>
+      </nav>
+
       <ol class="jobs">
         <li
           v-for="(job, i) in experience"
+          :id="`job-${job.id}`"
           :key="job.id"
           v-reveal
           class="job card"
@@ -51,20 +91,51 @@ const CHIP_TONES = ['mint', 'yellow', 'cobalt', 'lilac', 'pink', 'tomato']
 
           <p class="job__summary">{{ job.summary }}</p>
 
-          <ul class="job__highlights">
-            <li v-for="(h, j) in job.highlights" :key="j">{{ h }}</li>
+          <ul :id="`job-${job.id}-details`" class="job__highlights">
+            <li
+              v-for="(h, j) in job.highlights"
+              v-show="expanded[job.id] || j < VISIBLE_HIGHLIGHTS"
+              :key="j"
+            >
+              {{ h }}
+            </li>
           </ul>
 
           <ul class="job__stack" aria-label="Tools used">
             <li
               v-for="(s, j) in job.stack"
+              v-show="expanded[job.id] || j < VISIBLE_CHIPS"
               :key="s"
               class="chip"
               :class="`tone-${CHIP_TONES[j % CHIP_TONES.length]}`"
             >
               {{ s }}
             </li>
+            <li
+              v-if="!expanded[job.id] && job.stack.length > VISIBLE_CHIPS"
+              class="chip job__more-chip"
+              aria-hidden="true"
+            >
+              +{{ job.stack.length - VISIBLE_CHIPS }}
+            </li>
           </ul>
+
+          <button
+            v-if="hasMore(job)"
+            type="button"
+            class="job__toggle mono"
+            :aria-expanded="String(!!expanded[job.id])"
+            :aria-controls="`job-${job.id}-details`"
+            @click="toggle(job)"
+          >
+            {{ toggleLabel(job) }}
+            <AppIcon
+              name="chevron-down"
+              :size="16"
+              class="job__chevron"
+              :class="{ 'job__chevron--up': expanded[job.id] }"
+            />
+          </button>
 
           <div v-if="job.links.length || job.note" class="job__footer">
             <a
@@ -83,11 +154,64 @@ const CHIP_TONES = ['mint', 'yellow', 'cobalt', 'lilac', 'pink', 'tomato']
           </div>
         </li>
       </ol>
+
+      <p class="next">
+        <RouterLink :to="{ name: 'home', hash: '#projects' }" class="btn btn--yellow">
+          See the projects behind this work <AppIcon name="arrow-right" />
+        </RouterLink>
+      </p>
     </div>
   </section>
 </template>
 
 <style scoped>
+.jump {
+  margin-bottom: 3rem;
+}
+
+.jump__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.jump__item {
+  display: grid;
+  gap: 0.15rem;
+  height: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.8rem;
+  border: var(--line-thin);
+  border-left: 6px solid var(--tone);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 140ms var(--ease);
+}
+
+.jump__item:hover {
+  transform: translate(-1px, -2px);
+}
+
+.jump__role {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.jump__org {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.jump__dates {
+  color: var(--ink-faint);
+  font-size: 0.7rem;
+}
+
 .jobs {
   display: grid;
   gap: 2.75rem;
@@ -194,6 +318,53 @@ const CHIP_TONES = ['mint', 'yellow', 'cobalt', 'lilac', 'pink', 'tomato']
   gap: 0.5rem;
   margin-top: 1.4rem;
   list-style: none;
+}
+
+.job__more-chip {
+  background: var(--paper-2);
+  color: var(--ink-soft);
+}
+
+.job__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: 0.5rem 0.9rem;
+  border: var(--line-thin);
+  border-radius: var(--radius-sm);
+  background: var(--paper-2);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.job__toggle:hover {
+  background: var(--tone-tint, var(--paper-2));
+}
+
+.job__chevron {
+  transition: rotate 200ms var(--ease);
+}
+
+.job__chevron--up {
+  rotate: 180deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jump__item,
+  .job__chevron {
+    transition: none;
+  }
+}
+
+.next {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
 }
 
 .job__footer {

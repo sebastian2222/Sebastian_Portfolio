@@ -6,9 +6,9 @@ import { profile } from '@/data/profile'
 import { asset } from '@/utils/format'
 
 const nav = [
-  { id: 'journey', label: 'Journey' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
+  { id: 'journey', label: 'Journey' },
   { id: 'toolbox', label: 'Toolbox' },
   { id: 'field-notes', label: 'Field notes' },
   { id: 'contact', label: 'Contact' },

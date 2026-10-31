@@ -10,9 +10,9 @@ import ContactSection from '@/components/sections/ContactSection.vue'
 
 <template>
   <HeroSection />
-  <JourneySection />
   <ExperienceSection />
   <ProjectsSection />
+  <JourneySection />
   <AboutSection />
   <GallerySection />
   <ContactSection />

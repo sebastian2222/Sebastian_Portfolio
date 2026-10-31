@@ -4,6 +4,11 @@ import { createMemoryHistory, createRouter } from 'vue-router'
 import ProjectCard from '../ProjectCard.vue'
 import ProjectsSection from '../sections/ProjectsSection.vue'
 import ArchitectureFlow from '../ArchitectureFlow.vue'
+import SiteHeader from '../SiteHeader.vue'
+import HeroSection from '../sections/HeroSection.vue'
+import ExperienceSection from '../sections/ExperienceSection.vue'
+import HomeView from '@/views/HomeView.vue'
+import { experience } from '@/data/experience'
 import { projects, getProject } from '@/data/projects'
 import { routes } from '@/router'
 
@@ -56,5 +61,53 @@ describe('ArchitectureFlow', () => {
     })
     expect(wrapper.findAll('ol > li').map((li) => li.text())).toEqual(['A', 'B', 'C'])
     expect(wrapper.find('figcaption').text()).toContain('cap')
+  })
+})
+
+describe('Home page order', () => {
+  it('shows experience before projects, and both before the journey', async () => {
+    const wrapper = await mountWithRouter(HomeView, { attachTo: document.body })
+    const ids = wrapper.findAll('section[id]').map((s) => s.attributes('id'))
+    expect(ids.indexOf('experience')).toBeLessThan(ids.indexOf('projects'))
+    expect(ids.indexOf('projects')).toBeLessThan(ids.indexOf('journey'))
+    wrapper.unmount()
+  })
+
+  it('lists Experience first in the nav', async () => {
+    const wrapper = await mountWithRouter(SiteHeader)
+    const labels = wrapper.findAll('.nav__link').map((a) => a.text())
+    expect(labels.slice(0, 3)).toEqual(['Experience', 'Projects', 'Journey'])
+  })
+
+  it('points the hero primary button at experience', async () => {
+    const wrapper = await mountWithRouter(HeroSection)
+    const primary = wrapper.find('.btn--tomato')
+    expect(primary.attributes('href')).toBe('/#experience')
+    expect(primary.text()).toContain('See my experience')
+  })
+})
+
+describe('ExperienceSection', () => {
+  it('shows three highlights per role and expands the rest on demand', async () => {
+    const wrapper = await mountWithRouter(ExperienceSection)
+    const job = experience.find((j) => j.highlights.length > 3)
+    const card = wrapper.find(`#job-${job.id}`)
+    const visible = () =>
+      card.findAll('.job__highlights li').filter((li) => li.element.style.display !== 'none')
+
+    expect(visible()).toHaveLength(3)
+    const toggle = card.find('.job__toggle')
+    expect(toggle.attributes('aria-expanded')).toBe('false')
+
+    await toggle.trigger('click')
+    expect(visible()).toHaveLength(job.highlights.length)
+    expect(toggle.attributes('aria-expanded')).toBe('true')
+    expect(toggle.text()).toContain('Show less')
+  })
+
+  it('keeps every highlight in the DOM for search', async () => {
+    const wrapper = await mountWithRouter(ExperienceSection)
+    const total = experience.reduce((n, j) => n + j.highlights.length, 0)
+    expect(wrapper.findAll('.job__highlights li')).toHaveLength(total)
   })
 })

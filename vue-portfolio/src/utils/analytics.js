@@ -10,6 +10,8 @@ import { profile } from '@/data/profile'
  *   contact_click    { method: email | linkedin | github }
  *   resume_download  { file }
  *   section_view     { section_id }  once per home-page section per visit
+ *   cta_click        { target }      hero buttons (data-cta="experience|projects|contact")
+ *   experience_expand { job_id }     "Show more" on a work-experience card
  */
 export function initAnalytics(
   id = import.meta.env.VITE_GA_MEASUREMENT_ID || profile.analyticsId,
@@ -82,9 +84,16 @@ export function classifyLink(href = '') {
   return null
 }
 
+/** Sends a custom event when analytics is loaded; a no-op in dev and tests. */
+export function track(name, params = {}) {
+  if (typeof window !== 'undefined' && window.gtag) window.gtag('event', name, params)
+}
+
 function trackLinkClick(event) {
   const link = event.target.closest?.('a[href]')
-  const match = link && classifyLink(link.getAttribute('href'))
+  if (!link) return
+  if (link.dataset.cta) track('cta_click', { target: link.dataset.cta })
+  const match = classifyLink(link.getAttribute('href'))
   if (match) window.gtag('event', ...match)
 }
 

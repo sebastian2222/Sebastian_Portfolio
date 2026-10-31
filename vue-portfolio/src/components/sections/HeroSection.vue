@@ -32,23 +32,27 @@ import { profile } from '@/data/profile'
 
         <div class="bench__grid">
           <div class="intro card">
-            <p class="note">
-              <span class="hand">rhymes with ‘reliable’… sort of</span>
-            </p>
-
-            <h1 id="hero-title" class="intro__title">
-              Hi, I’m {{ profile.shortName }}
-              <span class="wave" aria-hidden="true">👋</span>
-            </h1>
+            <h1 id="hero-title" class="intro__title">Hi, I’m {{ profile.shortName }}</h1>
             <p class="intro__headline">{{ profile.headline }}</p>
             <p class="intro__body">{{ profile.intro }}</p>
 
             <div class="intro__actions">
-              <RouterLink :to="{ name: 'home', hash: '#projects' }" class="btn btn--tomato">
-                See my work <AppIcon name="arrow-right" />
+              <RouterLink
+                :to="{ name: 'home', hash: '#experience' }"
+                class="btn btn--tomato"
+                data-cta="experience"
+              >
+                See my experience <AppIcon name="arrow-right" />
               </RouterLink>
-              <RouterLink :to="{ name: 'home', hash: '#contact' }" class="btn">
-                <AppIcon name="mail" /> Get in touch
+              <RouterLink :to="{ name: 'home', hash: '#projects' }" class="btn" data-cta="projects">
+                View projects
+              </RouterLink>
+              <RouterLink
+                :to="{ name: 'home', hash: '#contact' }"
+                class="intro__link mono"
+                data-cta="contact"
+              >
+                <AppIcon name="mail" :size="16" /> Get in touch
               </RouterLink>
             </div>
           </div>
@@ -155,39 +159,12 @@ import { profile } from '@/data/profile'
   border-radius: var(--radius-lg);
 }
 
-.note {
-  justify-self: start;
-  padding: 0.15rem 0.8rem;
-  border: var(--line-thin);
-  border-radius: var(--radius-sm);
-  background: var(--yellow-tint);
-  box-shadow: 3px 3px 0 var(--ink);
-  rotate: -1.5deg;
-}
-
-.note .hand {
-  font-size: 1.35rem;
-}
-
 .intro__title {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   font-size: clamp(2.3rem, 5.5vw, 3.6rem);
   letter-spacing: -0.03em;
-}
-
-.wave {
-  display: inline-grid;
-  place-items: center;
-  width: 1.2em;
-  height: 1.2em;
-  font-size: 0.7em;
-  border: var(--line-thin);
-  border-radius: var(--radius);
-  background: var(--yellow);
-  box-shadow: 3px 3px 0 var(--ink);
-  rotate: 6deg;
 }
 
 .intro__headline {
@@ -205,8 +182,26 @@ import { profile } from '@/data/profile'
 .intro__actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1rem;
   padding-top: 0.25rem;
+}
+
+.intro__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding-inline: 0.25rem;
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.intro__link:hover {
+  color: var(--tomato-text);
 }
 
 .polaroid-wrap {

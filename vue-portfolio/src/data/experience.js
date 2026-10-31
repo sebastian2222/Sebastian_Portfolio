@@ -46,9 +46,9 @@ export const experience = [
     highlights: [
       'Directed the production launch of the IFRC World Disasters Report platform (wdr26.org), launched globally in Geneva on 5 March and serving 30,000+ users on day one.',
       'Top-three contributor to the report platform (110+ commits): newsletter sign-up via Brevo and Next.js server actions on the Node.js runtime, in-app bug reporting, Arabic/Russian/French localisation and launch-day UI.',
+      'Led development of and built features for Disinformer, a cross-platform Flutter misinformation game for IFRC National Societies on iOS, Android and web, backed by Firebase with offline sync, localisation and analytics.',
       'Platform runs on Cloudflare Workers via OpenNext, with full-text search (FlexSearch) persisted in Cloudflare D1 and HLS adaptive-bitrate video for readers on slow connections.',
       'Contributed to Ctrl+Alt+Prebunk, an IFRC game that trains players to spot misinformation, built in Next.js, React and TypeScript with Zustand state and Jest/React Testing Library tests (feed interactions, persistence fixes, large-screen layout).',
-      'Led development of and built features for Disinformer, a cross-platform Flutter misinformation game for IFRC National Societies on iOS, Android and web, backed by Firebase with offline sync, localisation and analytics.',
       'Traced a broken preview-deployment pipeline to its root cause and fixed it, and moved the platform onto a patched Next.js release.',
       'Ran safe delivery: per-PR preview deployments and manually approved production, gated by tests, dependency audit, CodeQL and SAST in GitHub Actions.',
       'Integrated Notion-based incident triage for our production sites, giving the team one place to report, prioritise and track production issues through to resolution.',
@@ -93,14 +93,14 @@ export const experience = [
       'Led a six-person cross-functional team building Hush (hushapp.live), a production sensory-aware navigation app that helps neurodivergent adults move through Melbourne’s CBD without sensory overload.',
     highlights: [
       'Led Hush to selection for the Monash IT Industry Experience Expo showcase, open only to the top 1% of teams.',
-      'Led a six-person team (Business Analyst, Data Scientist, AI Specialist, Cybersecurity Specialist, Full-Stack Developer) across 3 agile iterations and 9 epics.',
       'Designed a fully serverless AWS architecture: Amplify, API Gateway, 11 Python 3.12 Lambdas, EventBridge, S3, ECR and RDS PostgreSQL with PostGIS and pgRouting, running for about US$22 a month.',
+      'Designed, and am now carrying out, the migration of Hush from AWS to Microsoft Azure (in progress): Static Web Apps, API Management, Azure Functions, Container Apps Jobs, Blob Storage, Event Grid and PostgreSQL Flexible Server in a private virtual network, with Entra ID, managed identities, Key Vault and GitHub Actions OIDC deploys.',
+      'Led a six-person team (Business Analyst, Data Scientist, AI Specialist, Cybersecurity Specialist, Full-Stack Developer) across 3 agile iterations and 9 epics.',
       'Built 6 REST APIs (/routes, /crowd, /cafes, /quiet-spaces, /landmarks, /predictions) and a pgRouting quiet-vs-fastest route engine fed by City of Melbourne pedestrian and noise sensor pipelines.',
       'Put a scikit-learn crowd-forecast model into production as a container Lambda via ECR, publishing hourly 24-hour forecasts per sensor to S3.',
       'Set up dev, staging and production environments with GitHub Actions CI and pre-commit/pre-push hooks; practised TDD with Vitest and Playwright, reaching a 100% axe accessibility pass and Lighthouse 100 performance.',
       'Fixed penetration-test findings with the Cybersecurity Specialist: replaced wildcard CORS with an allow-list, moved to parameterised queries, masked database errors and added server-side input validation.',
       'Ran it as a production service: CloudWatch alarms, budget alerts, daily backups with a 30-minute recovery target, and the Maintenance and Support handover documents.',
-      'Designed, and am now carrying out, the migration of Hush from AWS to Microsoft Azure (in progress): Static Web Apps, API Management, Azure Functions, Container Apps Jobs, Blob Storage, Event Grid and PostgreSQL Flexible Server in a private virtual network, with Entra ID, managed identities, Key Vault and GitHub Actions OIDC deploys.',
       'Ran usability testing with 100+ neurodivergent and neurotypical participants and turned all feedback into SMART LeanKit tickets.',
     ],
     stack: [
@@ -144,12 +144,12 @@ export const experience = [
       'Built and supported mission-critical services in a payment processor handling card traffic for global networks, working across teams and products in Java, C++, Node.js, TypeScript, Python, Go and .NET.',
     highlights: [
       'Engineered mission-critical Java and C++ backend systems for the payment processor, handling Mastercard and American Express transactions across ATM, payment-switch and card-payment flows.',
+      'On the L4 escalation team, root-caused the hardest production incidents and shipped hotfixes under live constraints, improving system reliability by 20%.',
+      'Built Splunk dashboards and queries for pipeline observability, cutting mean time to detect anomalies by 30%.',
       'Built services and REST APIs across multiple teams and products in Node.js (NestJS), TypeScript and Python.',
       'Implemented and extended ISO 8583 messaging pipelines that route high-volume transactions between card networks, acquirers and issuing banks.',
       'Upgraded and migrated the EMV test automation framework to .NET 6 (SpecFlow, MSTest), covering contact, contactless and other transaction types across multiple environments on Azure, with Jira integration, Docker on Oracle Linux, and GitHub Actions and Jenkins pipelines.',
       'Rewrote legacy Perl scripts as maintainable Go tools, and built .NET utilities for encryption and DUKPT key management.',
-      'On the L4 escalation team, root-caused the hardest production incidents and shipped hotfixes under live constraints, improving system reliability by 20%.',
-      'Built Splunk dashboards and queries for pipeline observability, cutting mean time to detect anomalies by 30%.',
       'Tuned Oracle SQL queries and stored procedures behind transaction records, reducing peak-load processing latency by 25%.',
     ],
     stack: [
