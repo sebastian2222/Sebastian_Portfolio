@@ -61,8 +61,12 @@ async function copyEmail() {
           <a class="btn" :href="profile.links.github" target="_blank" rel="noopener">
             <AppIcon name="github" /> GitHub
           </a>
-          <a class="btn btn--tomato" :href="asset(profile.resume)" download>
-            <AppIcon name="download" /> Download résumé
+          <a
+            class="btn btn--tomato"
+            :href="asset(profile.resume)"
+            :download="profile.resumeFileName"
+          >
+            <AppIcon name="download" /> Download Resume
           </a>
         </div>
       </div>

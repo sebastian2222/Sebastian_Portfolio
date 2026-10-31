@@ -25,7 +25,8 @@ export const profile = {
       'environments, runbooks, and onboarding that gets a new developer shipping in their first week.',
   ],
   portrait,
-  resume: 'files/Sebastian_Parakal_Jose_Resume.pdf',
+  resume: 'files/Sebastian_Jose_Resume.pdf',
+  resumeFileName: 'Sebastian_Jose_Resume.pdf',
   // Google Analytics 4 measurement ID (public by design; it ships in the page source).
   analyticsId: 'G-SQDK7WSWWF',
   email: 'sebastianparakal@gmail.com',

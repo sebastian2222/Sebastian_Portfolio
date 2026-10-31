@@ -5,6 +5,13 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/files/Sebastian_Parakal_Jose_Resume.pdf",
+      "destination": "/files/Sebastian_Jose_Resume.pdf",
+      "permanent": true
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {

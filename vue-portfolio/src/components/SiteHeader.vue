@@ -52,8 +52,13 @@ watch(
       </nav>
 
       <div class="header__actions">
-        <a class="btn btn--yellow header__cv" :href="asset(profile.resume)" download>
-          <AppIcon name="download" /> <span>Download CV</span>
+        <a
+          class="btn btn--yellow header__cv"
+          :href="asset(profile.resume)"
+          :download="profile.resumeFileName"
+          aria-label="Download Resume (PDF)"
+        >
+          <AppIcon name="download" /> <span>Download Resume</span>
         </a>
         <img
           class="header__avatar"

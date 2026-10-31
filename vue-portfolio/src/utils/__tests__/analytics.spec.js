@@ -47,9 +47,9 @@ describe('classifyLink', () => {
       { method: 'linkedin' },
     ])
     expect(classifyLink('https://github.com/x')).toEqual(['contact_click', { method: 'github' }])
-    expect(classifyLink('/files/Sebastian_Parakal_Jose_Resume.pdf')).toEqual([
+    expect(classifyLink('/files/Sebastian_Jose_Resume.pdf')).toEqual([
       'resume_download',
-      { file: 'Sebastian_Parakal_Jose_Resume.pdf' },
+      { file: 'Sebastian_Jose_Resume.pdf' },
     ])
   })
 

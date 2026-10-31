@@ -123,7 +123,7 @@ function toggle(job) {
           <button
             v-if="hasMore(job)"
             type="button"
-            class="job__toggle mono"
+            class="btn btn--navy job__toggle"
             :aria-expanded="String(!!expanded[job.id])"
             :aria-controls="`job-${job.id}-details`"
             @click="toggle(job)"
@@ -326,24 +326,15 @@ function toggle(job) {
 }
 
 .job__toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
+  margin-top: 1.25rem;
   min-height: 44px;
-  margin-top: 1rem;
-  padding: 0.5rem 0.9rem;
-  border: var(--line-thin);
-  border-radius: var(--radius-sm);
-  background: var(--paper-2);
-  box-shadow: var(--shadow-sm);
-  color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 700;
-  cursor: pointer;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.8rem;
 }
 
-.job__toggle:hover {
-  background: var(--tone-tint, var(--paper-2));
+.job__toggle[aria-expanded='true'] {
+  background: var(--card);
+  color: var(--ink);
 }
 
 .job__chevron {
