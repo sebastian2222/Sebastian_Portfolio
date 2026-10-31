@@ -21,6 +21,7 @@ import birdtagArchitecture from '@/assets/images/figures/birdtag-architecture.we
 import warehouseStarSchema from '@/assets/images/figures/warehouse-star-schema.webp'
 import ptvHeatmap from '@/assets/images/figures/ptv-heatmap.webp'
 import hushArchitecture from '@/assets/images/figures/hush-architecture.webp'
+import hushAzureArchitecture from '@/assets/images/figures/hush-azure-architecture.webp'
 
 export const categories = [
   { id: 'all', label: 'All' },
@@ -134,8 +135,8 @@ export const projects = [
       'Sensory-friendly navigation for Melbourne’s CBD: live crowd density and the quietest route, not just the fastest.',
     year: '2026',
     context: 'Accessible smart-city navigation',
-    course: 'Monash Industry Experience capstone · City of Melbourne open data',
-    role: 'Sole software engineer (end to end)',
+    course: 'Monash University · Technical Lead, Industry Experience Studio (Team TE22)',
+    role: 'Technical Lead (full-stack and cloud), 6-person team',
     figures: [
       {
         src: hushArchitecture,
@@ -144,6 +145,14 @@ export const projects = [
         alt: 'Hush AWS architecture, colour-coded by iteration: a Vue frontend on Amplify calls API Gateway, which fronts Lambdas for GeoJSON, quiet spaces, landmarks, cafés, quiet-route finding and forecast fetches backed by RDS; EventBridge schedules drive the noise-sensor loader, pedestrian-count ingestion and an hourly ECR-packaged crowd-density forecast Lambda that writes to an S3 forecast bucket, which auto-triggers a formatter Lambda; external APIs are Google Places, City of Melbourne open data, Cloudinary and Google Maps.',
         caption:
           'The system architecture I designed, coloured by iteration: live pedestrian data and quiet spaces first, then cafés, noise sensors, crowd forecasting and quiet routes, then landmarks and waypoint navigation.',
+      },
+      {
+        src: hushAzureArchitecture,
+        width: 2400,
+        height: 1574,
+        alt: 'Hush architecture on Microsoft Azure (Australia East): users reach a Vue 3 front end on Azure Static Web Apps, which calls Azure API Management (CORS allow-list, rate limiting, safe errors) in front of the hush-api Function App with six HTTP functions for routes, predictions, crowd, cafés, quiet spaces and landmarks. Functions sit in a private virtual network with Azure Database for PostgreSQL Flexible Server (PostGIS, pgRouting, Entra auth). A hush-jobs Function App runs timer functions that ingest City of Melbourne pedestrian and noise data and recompute quiet costs, plus an Event Grid-triggered forecast formatter. A Container Apps Job pulls the crowd-forecast image from Container Registry every hour and writes JSON to Blob Storage, which raises a BlobCreated event. Security and operations use Entra ID, managed identities, Key Vault, Azure Monitor and Cost Management; GitHub Actions deploys via OIDC to dev, staging and prod resource groups.',
+        caption:
+          'The Azure architecture I designed for migrating Hush off AWS (migration in progress): Amplify to Static Web Apps, API Gateway to API Management, Lambda to Functions, ECR to Container Registry, EventBridge to timers and Event Grid, S3 to Blob Storage, IAM to Entra ID and RBAC, and RDS to PostgreSQL Flexible Server in a private virtual network.',
       },
     ],
     categories: ['cloud', 'fullstack', 'ai'],
@@ -168,6 +177,10 @@ export const projects = [
       'Playwright',
       'GitHub Actions',
       'Dependabot',
+      'CloudWatch',
+      'Microsoft Azure',
+      'Azure Functions',
+      'Azure API Management',
     ],
     links: [{ label: 'hushapp.live', href: 'https://www.hushapp.live', kind: 'live' }],
     summary:
@@ -181,6 +194,8 @@ export const projects = [
       'Scheduled loader Lambdas that pull City of Melbourne open data (pedestrian counters, microclimate/noise sensors) into RDS.',
       'Grounding tools (box breathing, a 5-4-3-2-1 senses exercise) and step-by-step scenarios for rehearsing a trip.',
       'Infrastructure as code with Terraform: a least-privilege IAM role per Lambda, EventBridge schedules and strict CORS, deployed behind an Amplify-hosted frontend.',
+      'Production operations from day one: CloudWatch alarms on Lambda error rate, API 5xx rate, RDS storage, missed forecast runs and route latency over 25 s, AWS budget alerts, and daily backups with a 30-minute recovery target.',
+      'An AWS-to-Azure migration, now in progress: Static Web Apps, API Management, Azure Functions (Flex Consumption), a Container Apps Job for the forecast, Blob Storage with Event Grid, and PostgreSQL Flexible Server in a private virtual network, secured with Entra ID, managed identities and Key Vault, deployed from GitHub Actions over OIDC.',
     ],
     architecture: {
       lanes: [
@@ -235,11 +250,13 @@ export const projects = [
     results: {
       notes: [
         'CI on every pull request runs Vitest unit tests, Playwright end-to-end tests, a high-severity npm audit and linting, with Dependabot keeping dependencies patched.',
-        'Demoed at the Monash FIT Industry Experience Expo.',
+        'Selected for the Monash IT Industry Experience Expo showcase, open only to the top 1% of teams.',
+        'Validated with 100+ usability participants, neurodivergent and neurotypical; axe DevTools 100% accessibility pass and Lighthouse 100 performance.',
+        'Ran at about US$22 a month on AWS, finishing about US$69 under the credit budget.',
       ],
     },
     contribution:
-      'I was the only software engineer on the capstone team, so I designed and built all of it: the Vue frontend and map experience, every Python Lambda, the PostGIS/pgRouting routing, the crowd-forecasting ML pipeline, the Terraform-managed AWS infrastructure and the CI/CD pipeline.',
+      'As Technical Lead of a six-person team (Business Analyst, Data Scientist, AI Specialist, Cybersecurity Specialist, Full-Stack Developer), I owned the system architecture, the serverless AWS platform, the six REST APIs, environments and CI/CD, and engineering quality. I built the live data pipelines with the Data Scientist, put the AI Specialist’s forecast model into production, fixed the penetration-test findings with the Cybersecurity Specialist, and wrote the Maintenance and Support handover documents. I designed the architecture for migrating Hush to Microsoft Azure and am now carrying out that migration.',
   },
   {
     slug: 'ai-marking-harness',
